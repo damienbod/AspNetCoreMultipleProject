@@ -1,0 +1,5 @@
+src/AspNet5MultipleProject/AspNet5MultipleProject.xproj.user
+src/DataAccessSqlite/DataAccessSqliteProvider.xproj.user
+src/DomainModel/DomainModel.xproj.user
+src/DataAccessSqlite/project.lock.json
+src/DomainModel/project.lock.json
