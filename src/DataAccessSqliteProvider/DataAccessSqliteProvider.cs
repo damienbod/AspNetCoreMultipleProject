@@ -22,22 +22,26 @@ namespace DataAccessSqliteProvider
 
         public void AddDataEventRecord(DataEventRecord dataEventRecord)
         {
-            throw new System.NotImplementedException();
+            _context.DataEventRecords.Add(dataEventRecord);
+            _context.SaveChanges();
         }
 
         public void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
         {
-            throw new System.NotImplementedException();
+            _context.DataEventRecords.Update(dataEventRecord);
+            _context.SaveChanges();
         }
 
         public void DeleteDataEventRecord(long dataEventRecordId)
         {
-            throw new System.NotImplementedException();
+            var entity = _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
+            _context.DataEventRecords.Remove(entity);
+            _context.SaveChanges();
         }
 
         public DataEventRecord GetDataEventRecord(long dataEventRecordId)
         {
-            throw new System.NotImplementedException();
+            return _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
         }
 
         public List<DataEventRecord> GetDataEventRecords(bool withChildren)
