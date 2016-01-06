@@ -18,9 +18,9 @@
         }
 
         [HttpGet]
-        public IEnumerable<DataEventRecord> Get()
+        public IEnumerable<DataEventRecord> Get(bool withChildren)
         {
-            return _dataAccessProvider.GetDataEventRecords(true);
+            return _dataAccessProvider.GetDataEventRecords(withChildren);
         }
 
         [HttpGet("{id}")]
