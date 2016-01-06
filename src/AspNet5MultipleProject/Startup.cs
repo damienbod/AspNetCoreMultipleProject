@@ -6,11 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace AspNet5MultipleProject
 {
+    using DataAccessSqliteProvider;
+
+    using DomainModel;
+    using DomainModel.Model;
+    using Microsoft.Data.Entity;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
@@ -19,14 +24,17 @@ namespace AspNet5MultipleProject
 
         public IConfigurationRoot Configuration { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
+            services.AddEntityFramework()
+                .AddSqlite()
+                .AddDbContext<DomainModelSqliteContext>();
+
             services.AddMvc();
+
+            services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

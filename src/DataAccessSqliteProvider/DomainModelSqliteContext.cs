@@ -7,10 +7,13 @@ namespace DomainModel.Model
     public class DomainModelSqliteContext : DbContext
     {
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
-      
+
+        public DbSet<SourceInfo> SourceInfos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         { 
-            builder.Entity<DataEventRecord>().HasKey(m => m.Id); 
+            builder.Entity<DataEventRecord>().HasKey(m => m.Id);
+            builder.Entity<SourceInfo>().HasKey(m => m.Id);
             base.OnModelCreating(builder); 
         }
 
