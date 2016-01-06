@@ -57,7 +57,7 @@
 
             foreach (var entry in modifiedSourceInfo)
             {
-                entry.Property("Updated").CurrentValue = DateTime.UtcNow;
+                entry.Property("UpdatedTimestamp").CurrentValue = DateTime.UtcNow;
             }
         }
     }

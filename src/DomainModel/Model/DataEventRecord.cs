@@ -13,8 +13,6 @@
         public string Description { get; set; }
         public DateTime Timestamp { get; set; }
         public SourceInfo SourceInfo { get; set; }
-
-        [JsonIgnore]
         public int SourceInfoId { get; set; }
     }
 }

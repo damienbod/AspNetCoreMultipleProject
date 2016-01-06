@@ -21,7 +21,12 @@ namespace DataAccessSqliteProvider
         }
 
         public void AddDataEventRecord(DataEventRecord dataEventRecord)
-        {
+        {           
+            if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
+            {
+                _context.SourceInfos.Add(dataEventRecord.SourceInfo);
+            }
+
             _context.DataEventRecords.Add(dataEventRecord);
             _context.SaveChanges();
         }
