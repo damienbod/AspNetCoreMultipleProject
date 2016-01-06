@@ -1,0 +1,30 @@
+﻿{
+    "version": "1.0.0-*",
+    "description": "DataAccessSqlite Class Library",
+    "authors": [ "damien.bowden" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "dependencies": {
+        "EntityFramework.Commands": "7.0.0-rc1-final",
+        "EntityFramework.SQLite": "7.0.0-rc1-final",
+        "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
+        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
+        "DomainModel": "1.0.0"
+    },
+
+    "commands": {
+    },
+
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": { }
+    }
+}
