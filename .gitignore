@@ -3,3 +3,4 @@ src/DataAccessSqlite/DataAccessSqliteProvider.xproj.user
 src/DomainModel/DomainModel.xproj.user
 src/DataAccessSqlite/project.lock.json
 src/DomainModel/project.lock.json
+.vs/AspNet5MultipleProject/v14/.suo

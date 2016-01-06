@@ -2,14 +2,35 @@
 
 namespace DataAccessSqliteProvider
 {
+    using System.Collections.Generic;
+
+    using DomainModel.Model;
+
     public class DataAccessSqliteProvider : IDataAccessProvider
     {
-        /// <summary>
-        /// Default constructor used for migrations
-        /// </summary>
-        public DataAccessSqliteProvider()
+        public void AddDataEventRecord(DataEventRecord dataEventRecord)
         {
-            // TODO
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateDataEventRecord(DataEventRecord dataEventRecord)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteDataEventRecord(DataEventRecord dataEventRecord)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DataEventRecord GetDataEventRecord(int dataEventRecordId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<DataEventRecord> GetDataEventRecords(bool withChildren)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

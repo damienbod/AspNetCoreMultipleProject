@@ -7,10 +7,6 @@
     "licenseUrl": "",
 
     "dependencies": {
-        "EntityFramework.Commands": "7.0.0-rc1-final",
-        "EntityFramework.Core": "7.0.0-rc1-final",
-        "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
-        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
         "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
         "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
         "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
@@ -18,11 +14,6 @@
         "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
         "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final"
     },
-
-    "commands": {
-        "web": "Microsoft.AspNet.Server.Kestrel"
-    },
-
     "frameworks": {
         "dnx451": { },
         "dnxcore50": { }
