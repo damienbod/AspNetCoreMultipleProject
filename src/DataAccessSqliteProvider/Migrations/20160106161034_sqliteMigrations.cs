@@ -16,7 +16,8 @@ namespace DataAccessSqliteProvider.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Timestamp = table.Column<DateTime>(nullable: false)
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    UpdatedTimestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,7 +33,8 @@ namespace DataAccessSqliteProvider.Migrations
                     Name = table.Column<string>(nullable: true),
                     SourceInfoId = table.Column<int>(nullable: false),
                     SourceInfoSourceInfoId = table.Column<long>(nullable: true),
-                    Timestamp = table.Column<DateTime>(nullable: false)
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    UpdatedTimestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

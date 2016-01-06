@@ -1,5 +1,8 @@
 namespace DomainModel.Model
 {
+    using System;
+    using System.Linq;
+
     using Microsoft.Data.Entity;
     using Microsoft.Extensions.Configuration;
 
@@ -15,6 +18,9 @@ namespace DomainModel.Model
             builder.Entity<DataEventRecord>().HasKey(m => m.DataEventRecordId);
             builder.Entity<SourceInfo>().HasKey(m => m.SourceInfoId);
 
+            // shadow properties
+            builder.Entity<DataEventRecord>().Property<DateTime>("UpdatedTimestamp");
+            builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
             base.OnModelCreating(builder); 
         }
@@ -29,6 +35,28 @@ namespace DomainModel.Model
             var sqlConnectionString = configuration["DataAccessSqliteProvider:ConnectionString"];
 
             optionsBuilder.UseSqlite(sqlConnectionString);
+        }
+
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+
+            updateUpdatedProperty<SourceInfo>();
+            updateUpdatedProperty<DataEventRecord>();
+
+            return base.SaveChanges();
+        }
+
+        private void updateUpdatedProperty<T>() where T : class
+        {
+            var modifiedSourceInfo =
+                ChangeTracker.Entries<T>()
+                    .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+
+            foreach (var entry in modifiedSourceInfo)
+            {
+                entry.Property("Updated").CurrentValue = DateTime.UtcNow;
+            }
         }
     }
 }

@@ -30,6 +30,8 @@ namespace DataAccessSqliteProvider.Migrations
 
                     b.Property<DateTime>("Timestamp");
 
+                    b.Property<DateTime>("UpdatedTimestamp");
+
                     b.HasKey("DataEventRecordId");
                 });
 
@@ -43,6 +45,8 @@ namespace DataAccessSqliteProvider.Migrations
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("Timestamp");
+
+                    b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("SourceInfoId");
                 });

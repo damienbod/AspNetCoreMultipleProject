@@ -8,7 +8,7 @@ using DomainModel.Model;
 namespace DataAccessSqliteProvider.Migrations
 {
     [DbContext(typeof(DomainModelSqliteContext))]
-    [Migration("20160106154015_sqliteMigrations")]
+    [Migration("20160106161034_sqliteMigrations")]
     partial class sqliteMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,8 @@ namespace DataAccessSqliteProvider.Migrations
 
                     b.Property<DateTime>("Timestamp");
 
+                    b.Property<DateTime>("UpdatedTimestamp");
+
                     b.HasKey("DataEventRecordId");
                 });
 
@@ -44,6 +46,8 @@ namespace DataAccessSqliteProvider.Migrations
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("Timestamp");
+
+                    b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("SourceInfoId");
                 });
