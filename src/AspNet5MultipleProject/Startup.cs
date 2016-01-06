@@ -6,16 +6,11 @@ using Microsoft.Extensions.Logging;
 
 namespace AspNet5MultipleProject
 {
+    using DataAccessMsSqlServerProvider;
     using DataAccessSqliteProvider;
-
     using DomainModel;
-    using DomainModel.Model;
-
     using Microsoft.AspNet.Mvc.Formatters;
-    using Microsoft.Data.Entity;
-
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
 
     public class Startup
     {
@@ -34,6 +29,10 @@ namespace AspNet5MultipleProject
                 .AddSqlite()
                 .AddDbContext<DomainModelSqliteContext>();
 
+            services.AddEntityFramework()
+                            .AddSqlServer()
+                            .AddDbContext<DomainModelMsSqlServerContext>();
+
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
                 SerializerSettings = new JsonSerializerSettings
@@ -50,8 +49,11 @@ namespace AspNet5MultipleProject
                 }
             );
 
+            // Use a SQLite database
             services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
-            
+
+            // Use a MS SQL Server database
+            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F334A68-D2EC-4359-925D-C19E3780EB80}"
 	ProjectSection(SolutionItems) = preProject
+		src\config.json = src\config.json
 		global.json = global.json
 	EndProjectSection
 EndProject
@@ -15,6 +16,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNet5MultipleProject", "src\AspNet5MultipleProject\AspNet5MultipleProject.xproj", "{AD3372BE-2A8A-467E-ABB7-65739E5265A3}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DomainModel", "src\DomainModel\DomainModel.xproj", "{C621779A-DC48-4322-AAC9-A813A7002A42}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMSSQLServerProvider", "src\DataAccessMSSQLServerProvider\DataAccessMSSQLServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,10 @@ Global
 		{C621779A-DC48-4322-AAC9-A813A7002A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C621779A-DC48-4322-AAC9-A813A7002A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C621779A-DC48-4322-AAC9-A813A7002A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37337A23-6C0A-405D-8239-D72D192BD6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37337A23-6C0A-405D-8239-D72D192BD6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37337A23-6C0A-405D-8239-D72D192BD6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37337A23-6C0A-405D-8239-D72D192BD6D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +49,6 @@ Global
 		{E737764A-BF5C-4B57-A26A-885550B7F364} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{AD3372BE-2A8A-467E-ABB7-65739E5265A3} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{C621779A-DC48-4322-AAC9-A813A7002A42} = {473E7822-72A4-4268-BEE5-17807D09B880}
+		{37337A23-6C0A-405D-8239-D72D192BD6D2} = {473E7822-72A4-4268-BEE5-17807D09B880}
 	EndGlobalSection
 EndGlobal

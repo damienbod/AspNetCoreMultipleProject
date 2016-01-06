@@ -1,5 +1,5 @@
-namespace DataAccessSqliteProvider
-{
+﻿namespace DataAccessMsSqlServerProvider
+{ 
     using System;
     using System.Linq;
 
@@ -9,14 +9,14 @@ namespace DataAccessSqliteProvider
     using Microsoft.Extensions.Configuration;
 
     // >dnx . ef migration add testMigration
-    public class DomainModelSqliteContext : DbContext
+    public class DomainModelMsSqlServerContext : DbContext
     {
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
-        { 
+        {
             builder.Entity<DataEventRecord>().HasKey(m => m.DataEventRecordId);
             builder.Entity<SourceInfo>().HasKey(m => m.SourceInfoId);
 
@@ -24,7 +24,7 @@ namespace DataAccessSqliteProvider
             builder.Entity<DataEventRecord>().Property<DateTime>("UpdatedTimestamp");
             builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
-            base.OnModelCreating(builder); 
+            base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,9 +34,9 @@ namespace DataAccessSqliteProvider
            .AddEnvironmentVariables();
             var configuration = builder.Build();
 
-            var sqlConnectionString = configuration["DataAccessSqliteProvider:ConnectionString"];
+            var sqlConnectionString = configuration["DataAccessMsSqlServerProvider:ConnectionString"];
 
-            optionsBuilder.UseSqlite(sqlConnectionString);
+            optionsBuilder.UseSqlServer(sqlConnectionString);
         }
 
         public override int SaveChanges()

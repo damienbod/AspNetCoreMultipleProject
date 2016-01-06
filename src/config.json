@@ -1,5 +1,8 @@
 ﻿{
     "DataAccessSqliteProvider": {
         "ConnectionString": "Data Source=C:\\git\\damienbod\\AspNet5MultipleProject\\src\\DataAccessSqliteProvider\\dataeventrecords.sqlite"
+    },
+    "DataAccessMsSqlServerProvider": {
+        "ConnectionString": "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;"
     }
 }
