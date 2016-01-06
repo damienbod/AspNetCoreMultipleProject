@@ -12,15 +12,17 @@ namespace DomainModel.Model
 
         protected override void OnModelCreating(ModelBuilder builder)
         { 
-            builder.Entity<DataEventRecord>().HasKey(m => m.Id);
-            builder.Entity<SourceInfo>().HasKey(m => m.Id);
+            builder.Entity<DataEventRecord>().HasKey(m => m.DataEventRecordId);
+            builder.Entity<SourceInfo>().HasKey(m => m.SourceInfoId);
+
+
             base.OnModelCreating(builder); 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder()
-           .AddJsonFile("config.json")
+           .AddJsonFile("../config.json")
            .AddEnvironmentVariables();
             var configuration = builder.Build();
 

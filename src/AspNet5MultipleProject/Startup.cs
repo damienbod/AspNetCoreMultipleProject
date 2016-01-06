@@ -16,9 +16,8 @@ namespace AspNet5MultipleProject
     {
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables();
+            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+
             Configuration = builder.Build();
         }
 

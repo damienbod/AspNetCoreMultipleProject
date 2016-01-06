@@ -1,5 +1,0 @@
-﻿{
-    "DataAccessSqliteProvider": {
-        "ConnectionString": "Data Source=C:\\git\\damienbod\\AspNet5MultipleProject\\src\\DataAccessSqlite\\dataeventrecords.sqlite"
-    }
-}

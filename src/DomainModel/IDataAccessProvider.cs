@@ -8,11 +8,11 @@
     {
         void AddDataEventRecord(DataEventRecord dataEventRecord);
 
-        void UpdateDataEventRecord(DataEventRecord dataEventRecord);
+        void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord);
 
-        void DeleteDataEventRecord(DataEventRecord dataEventRecord);
+        void DeleteDataEventRecord(long dataEventRecordId);
 
-        DataEventRecord GetDataEventRecord(int dataEventRecordId);
+        DataEventRecord GetDataEventRecord(long dataEventRecordId);
 
         List<DataEventRecord> GetDataEventRecords(bool withChildren);
     }

@@ -3,8 +3,11 @@
 namespace DataAccessSqliteProvider
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using DomainModel.Model;
+
+    using Microsoft.Data.Entity;
     using Microsoft.Extensions.Logging;
     public class DataAccessSqliteProvider : IDataAccessProvider
     {
@@ -22,24 +25,29 @@ namespace DataAccessSqliteProvider
             throw new System.NotImplementedException();
         }
 
-        public void UpdateDataEventRecord(DataEventRecord dataEventRecord)
+        public void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
         {
             throw new System.NotImplementedException();
         }
 
-        public void DeleteDataEventRecord(DataEventRecord dataEventRecord)
+        public void DeleteDataEventRecord(long dataEventRecordId)
         {
             throw new System.NotImplementedException();
         }
 
-        public DataEventRecord GetDataEventRecord(int dataEventRecordId)
+        public DataEventRecord GetDataEventRecord(long dataEventRecordId)
         {
             throw new System.NotImplementedException();
         }
 
         public List<DataEventRecord> GetDataEventRecords(bool withChildren)
         {
-            throw new System.NotImplementedException();
+            if (withChildren)
+            {
+                return _context.DataEventRecords.Include(s => s.SourceInfo).ToList();
+            }
+            
+            return _context.DataEventRecords.ToList();
         }
     }
 }
