@@ -12,6 +12,9 @@ namespace AspNet5MultipleProject
     using DomainModel.Model;
     using Microsoft.Data.Entity;
 
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -32,6 +35,12 @@ namespace AspNet5MultipleProject
             services.AddMvc();
 
             services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
+
+            // TODO add json formatter
+            //new JsonSerializerSettings()
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

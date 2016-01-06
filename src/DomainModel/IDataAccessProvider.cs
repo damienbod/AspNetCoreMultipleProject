@@ -14,6 +14,9 @@
 
         DataEventRecord GetDataEventRecord(long dataEventRecordId);
 
-        List<DataEventRecord> GetDataEventRecords(bool withChildren);
+        List<DataEventRecord> GetDataEventRecords();
+
+        List<SourceInfo> GetSourceInfos(bool withChildren);
+        
     }
 }

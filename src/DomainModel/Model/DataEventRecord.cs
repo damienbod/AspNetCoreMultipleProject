@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Newtonsoft.Json;
+
     // >dnx . ef migration add testMigration
 
     public class DataEventRecord
@@ -12,6 +14,7 @@
         public DateTime Timestamp { get; set; }
         public SourceInfo SourceInfo { get; set; }
 
+        [JsonIgnore]
         public int SourceInfoId { get; set; }
     }
 }

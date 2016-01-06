@@ -7,6 +7,8 @@
 
     using Microsoft.AspNet.Mvc;
 
+    using Newtonsoft.Json;
+
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller
     {
@@ -18,9 +20,17 @@
         }
 
         [HttpGet]
-        public IEnumerable<DataEventRecord> Get(bool withChildren)
+        public IEnumerable<DataEventRecord> Get()
         {
-            return _dataAccessProvider.GetDataEventRecords(withChildren);
+            return _dataAccessProvider.GetDataEventRecords();
+        }
+
+        [HttpGet]
+        [Route("SourceInfos")]
+        public IEnumerable<SourceInfo> GetSourceInfos(bool withChildren)
+        {
+            var data = _dataAccessProvider.GetSourceInfos(withChildren);
+            return data;
         }
 
         [HttpGet("{id}")]
