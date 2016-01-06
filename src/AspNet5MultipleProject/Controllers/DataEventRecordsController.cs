@@ -29,8 +29,7 @@
         [Route("SourceInfos")]
         public IEnumerable<SourceInfo> GetSourceInfos(bool withChildren)
         {
-            var data = _dataAccessProvider.GetSourceInfos(withChildren);
-            return data;
+            return _dataAccessProvider.GetSourceInfos(withChildren);
         }
 
         [HttpGet("{id}")]

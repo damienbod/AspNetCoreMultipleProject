@@ -10,6 +10,8 @@ namespace AspNet5MultipleProject
 
     using DomainModel;
     using DomainModel.Model;
+
+    using Microsoft.AspNet.Mvc.Formatters;
     using Microsoft.Data.Entity;
 
     using Newtonsoft.Json;
@@ -32,15 +34,24 @@ namespace AspNet5MultipleProject
                 .AddSqlite()
                 .AddDbContext<DomainModelSqliteContext>();
 
-            services.AddMvc();
+            JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }
+            };
+
+            services.AddMvc(
+                options =>
+                {
+                    options.OutputFormatters.Clear();
+                    options.OutputFormatters.Insert(0, jsonOutputFormatter);
+                }
+            );
 
             services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
-
-            // TODO add json formatter
-            //new JsonSerializerSettings()
-            //{
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //});
+            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
