@@ -4,5 +4,8 @@
     },
     "DataAccessMsSqlServerProvider": {
         "ConnectionString": "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;"
+    },
+    "DataAccessPostgreSqlProvider": {
+        "ConnectionString": "Data Source=N275\\MSSQLSERVER2014;Initial Catalog=WebApiFileTable;Integrated Security=True;"
     }
 }
