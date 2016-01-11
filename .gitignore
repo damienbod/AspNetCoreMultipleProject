@@ -4,3 +4,7 @@ src/DomainModel/DomainModel.xproj.user
 src/DataAccessSqlite/project.lock.json
 src/DomainModel/project.lock.json
 .vs/AspNet5MultipleProject/v14/.suo
+src/DataAccessMsSqlServerProvider/DataAccessMsSqlServerProvider.xproj.user
+src/DataAccessPostgreSqlProvider/DataAccessPostgreSqlProvider.xproj.user
+src/DataAccessPostgreSqlProvider/project.lock.json
+src/AspNet5MultipleProject/project.lock.json

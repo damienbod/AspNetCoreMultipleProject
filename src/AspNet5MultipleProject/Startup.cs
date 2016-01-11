@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace AspNet5MultipleProject
 {
     using DataAccessMsSqlServerProvider;
+    using DataAccessPostgreSqlProvider;
     using DataAccessSqliteProvider;
     using DomainModel;
-    using Microsoft.AspNet.Mvc.Formatters;
-    using Newtonsoft.Json;
 
     public class Startup
     {
@@ -25,13 +26,17 @@ namespace AspNet5MultipleProject
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework()
-                .AddSqlite()
-                .AddDbContext<DomainModelSqliteContext>();
+            //services.AddEntityFramework()
+            //    .AddSqlite()
+            //    .AddDbContext<DomainModelSqliteContext>();
+
+            //services.AddEntityFramework()
+            //    .AddSqlServer()
+            //    .AddDbContext<DomainModelMsSqlServerContext>();
 
             services.AddEntityFramework()
-                            .AddSqlServer()
-                            .AddDbContext<DomainModelMsSqlServerContext>();
+                .AddNpgsql()
+                .AddDbContext<DomainModelPostgreSqlContext>();
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
@@ -49,8 +54,11 @@ namespace AspNet5MultipleProject
                 }
             );
 
+            // Use a PostgreSQL database
+            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider>();
+
             // Use a SQLite database
-            services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
 
             // Use a MS SQL Server database
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider>();
@@ -62,9 +70,7 @@ namespace AspNet5MultipleProject
             loggerFactory.AddDebug();
 
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
-
             app.UseMvc();
         }
 
