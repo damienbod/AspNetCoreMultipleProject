@@ -26,17 +26,28 @@ namespace AspNet5MultipleProject
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Use a SQLite database
             //services.AddEntityFramework()
             //    .AddSqlite()
             //    .AddDbContext<DomainModelSqliteContext>();
+            //
+            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
 
+
+            // Use a MS SQL Server database
             //services.AddEntityFramework()
             //    .AddSqlServer()
             //    .AddDbContext<DomainModelMsSqlServerContext>();
+            // 
+            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider>();
 
+
+            // Use a PostgreSQL database
             services.AddEntityFramework()
                 .AddNpgsql()
                 .AddDbContext<DomainModelPostgreSqlContext>();
+
+            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider>();
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
@@ -53,15 +64,6 @@ namespace AspNet5MultipleProject
                     options.OutputFormatters.Insert(0, jsonOutputFormatter);
                 }
             );
-
-            // Use a PostgreSQL database
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider>();
-
-            // Use a SQLite database
-            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
-
-            // Use a MS SQL Server database
-            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
