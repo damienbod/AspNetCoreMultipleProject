@@ -1,6 +1,6 @@
 ﻿{
     "version": "1.0.0-*",
-    "description": "DataAccessMsSqlServerProvider",
+    "description": "DataAccessPostgreSqlProvider",
     "authors": [ "damienbod" ],
     "tags": [ "" ],
     "projectUrl": "",

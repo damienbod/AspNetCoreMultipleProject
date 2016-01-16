@@ -17,7 +17,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNet5MultipleProject", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DomainModel", "src\DomainModel\DomainModel.xproj", "{C621779A-DC48-4322-AAC9-A813A7002A42}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMSSQLServerProvider", "src\DataAccessMSSQLServerProvider\DataAccessMSSQLServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMSSQLServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessPostgreSqlProvider", "src\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.xproj", "{A336B1FE-BD9E-4938-9E46-A5D778245488}"
 EndProject
