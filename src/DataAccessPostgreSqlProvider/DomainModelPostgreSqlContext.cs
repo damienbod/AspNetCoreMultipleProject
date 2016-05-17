@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
 using DomainModel.Model;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessPostgreSqlProvider
-{ 
-    // >dotnet ef migration add testMigration
+{
+    // >dotnet ef migration add testMigration in AspNet5MultipleProject
     public class DomainModelPostgreSqlContext : DbContext
     {
         public DomainModelPostgreSqlContext(DbContextOptions<DomainModelPostgreSqlContext> options) :base(options)
