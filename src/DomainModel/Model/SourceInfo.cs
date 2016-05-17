@@ -1,8 +1,8 @@
-﻿namespace DomainModel.Model
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace DomainModel.Model
+{
     public class SourceInfo
     {
         public long SourceInfoId { get; set; }

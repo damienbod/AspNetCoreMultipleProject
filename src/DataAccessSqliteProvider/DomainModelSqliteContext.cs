@@ -1,16 +1,17 @@
+using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using DomainModel.Model;
+using Microsoft.Extensions.Configuration;
+
 namespace DataAccessSqliteProvider
 {
-    using System;
-    using System.Linq;
-
-    using DomainModel.Model;
-
-    using Microsoft.Data.Entity;
-    using Microsoft.Extensions.Configuration;
-
-    // >dnx . ef migration add testMigration
+    // >dotnet ef migration add testMigration
     public class DomainModelSqliteContext : DbContext
     {
+        public DomainModelSqliteContext(DbContextOptions<DomainModelSqliteContext> options) :base(options)
+        { }
+        
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
@@ -25,18 +26,6 @@ namespace DataAccessSqliteProvider
             builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
             base.OnModelCreating(builder); 
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder()
-           .AddJsonFile("../config.json")
-           .AddEnvironmentVariables();
-            var configuration = builder.Build();
-
-            var sqlConnectionString = configuration["DataAccessSqliteProvider:ConnectionString"];
-
-            optionsBuilder.UseSqlite(sqlConnectionString);
         }
 
         public override int SaveChanges()

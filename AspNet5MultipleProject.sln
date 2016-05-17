@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A4-4268-BEE5-17807D09B880}"
 EndProject
@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		src\config.json = src\config.json
 		global.json = global.json
+		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessSqliteProvider", "src\DataAccessSqliteProvider\DataAccessSqliteProvider.xproj", "{E737764A-BF5C-4B57-A26A-885550B7F364}"
@@ -17,7 +18,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNet5MultipleProject", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DomainModel", "src\DomainModel\DomainModel.xproj", "{C621779A-DC48-4322-AAC9-A813A7002A42}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMSSQLServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMsSqlServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessPostgreSqlProvider", "src\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.xproj", "{A336B1FE-BD9E-4938-9E46-A5D778245488}"
 EndProject

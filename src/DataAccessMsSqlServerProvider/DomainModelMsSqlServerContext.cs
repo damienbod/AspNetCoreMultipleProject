@@ -1,16 +1,17 @@
-﻿namespace DataAccessMsSqlServerProvider
+﻿using System;
+using System.Linq;
+using DomainModel.Model;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
+namespace DataAccessMsSqlServerProvider
 { 
-    using System;
-    using System.Linq;
-
-    using DomainModel.Model;
-
-    using Microsoft.Data.Entity;
-    using Microsoft.Extensions.Configuration;
-
-    // >dnx . ef migration add testMigration
+    // >dotnet ef migration add testMigration
     public class DomainModelMsSqlServerContext : DbContext
     {
+        public DomainModelMsSqlServerContext(DbContextOptions<DomainModelMsSqlServerContext> options) :base(options)
+        { }
+        
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
@@ -25,18 +26,6 @@
             builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
             base.OnModelCreating(builder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder()
-           .AddJsonFile("../config.json")
-           .AddEnvironmentVariables();
-            var configuration = builder.Build();
-
-            var sqlConnectionString = configuration["DataAccessMsSqlServerProvider:ConnectionString"];
-
-            optionsBuilder.UseSqlServer(sqlConnectionString);
         }
 
         public override int SaveChanges()

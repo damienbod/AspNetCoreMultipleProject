@@ -1,11 +1,8 @@
-﻿namespace DomainModel.Model
+﻿using System;
+using Newtonsoft.Json;
+
+namespace DomainModel.Model
 {
-    using System;
-
-    using Newtonsoft.Json;
-
-    // >dnx . ef migration add testMigration
-
     public class DataEventRecord
     {
         public long DataEventRecordId { get; set; }

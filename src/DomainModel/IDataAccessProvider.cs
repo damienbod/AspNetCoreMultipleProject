@@ -1,22 +1,15 @@
-﻿namespace DomainModel
+﻿using System.Collections.Generic;
+using DomainModel.Model;
+
+namespace DomainModel
 {
-    using System.Collections.Generic;
-
-    using DomainModel.Model;
-
     public interface IDataAccessProvider
     {
         void AddDataEventRecord(DataEventRecord dataEventRecord);
-
         void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord);
-
         void DeleteDataEventRecord(long dataEventRecordId);
-
         DataEventRecord GetDataEventRecord(long dataEventRecordId);
-
         List<DataEventRecord> GetDataEventRecords();
-
-        List<SourceInfo> GetSourceInfos(bool withChildren);
-        
+        List<SourceInfo> GetSourceInfos(bool withChildren);       
     }
 }

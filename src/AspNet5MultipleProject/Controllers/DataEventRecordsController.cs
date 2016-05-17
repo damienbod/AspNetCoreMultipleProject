@@ -1,14 +1,11 @@
-﻿namespace AspNet5MultipleProject.Controllers
+﻿using System.Collections.Generic;
+using DomainModel;
+using DomainModel.Model;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+
+namespace AspNet5MultipleProject.Controllers
 {
-    using System.Collections.Generic;
-
-    using DomainModel;
-    using DomainModel.Model;
-
-    using Microsoft.AspNet.Mvc;
-
-    using Newtonsoft.Json;
-
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller
     {

@@ -1,19 +1,20 @@
-using System;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-using DomainModel.Model;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using DataAccessPostgreSqlProvider;
 
-namespace DataAccessSqliteProvider.Migrations
+namespace AspNet5MultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelSqliteContext))]
-    partial class DomainModelSqliteContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DomainModelPostgreSqlContext))]
+    [Migration("20160517184508_DataAccessPostgreSqlProvider")]
+    partial class DataAccessPostgreSqlProvider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
+                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
@@ -26,13 +27,17 @@ namespace DataAccessSqliteProvider.Migrations
 
                     b.Property<int>("SourceInfoId");
 
-                    b.Property<long?>("SourceInfoSourceInfoId");
+                    b.Property<long?>("SourceInfoId1");
 
                     b.Property<DateTime>("Timestamp");
 
                     b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("DataEventRecordId");
+
+                    b.HasIndex("SourceInfoId1");
+
+                    b.ToTable("DataEventRecord");
                 });
 
             modelBuilder.Entity("DomainModel.Model.SourceInfo", b =>
@@ -49,13 +54,15 @@ namespace DataAccessSqliteProvider.Migrations
                     b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("SourceInfoId");
+
+                    b.ToTable("SourceInfo");
                 });
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
                     b.HasOne("DomainModel.Model.SourceInfo")
                         .WithMany()
-                        .HasForeignKey("SourceInfoSourceInfoId");
+                        .HasForeignKey("SourceInfoId1");
                 });
         }
     }

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using DomainModel;
 using DomainModel.Model;
-
+using System;
+    
 namespace DataAccessSqliteProvider
 {
-    using System;
-
     public class DataAccessSqliteProvider : IDataAccessProvider
     {
         private readonly DomainModelSqliteContext _context;

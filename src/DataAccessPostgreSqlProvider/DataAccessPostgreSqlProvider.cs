@@ -1,14 +1,14 @@
-﻿namespace DataAccessPostgreSqlProvider
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DomainModel;
+using DomainModel.Model;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace DataAccessPostgreSqlProvider
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using DomainModel;
-    using DomainModel.Model;
-
-    using Microsoft.Data.Entity;
-    using Microsoft.Extensions.Logging;
-
     public class DataAccessPostgreSqlProvider : IDataAccessProvider
     {
         private readonly DomainModelPostgreSqlContext _context;

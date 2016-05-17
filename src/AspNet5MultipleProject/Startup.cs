@@ -1,23 +1,27 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Mvc.Formatters;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using DataAccessMsSqlServerProvider;
+using DataAccessPostgreSqlProvider;
+using DataAccessSqliteProvider;
+using DomainModel;
+using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNet5MultipleProject
 {
-    using DataAccessMsSqlServerProvider;
-    using DataAccessPostgreSqlProvider;
-    using DataAccessSqliteProvider;
-    using DomainModel;
-
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();
         }
@@ -27,27 +31,40 @@ namespace AspNet5MultipleProject
         public void ConfigureServices(IServiceCollection services)
         {
             // Use a SQLite database
-            //services.AddEntityFramework()
-            //    .AddSqlite()
-            //    .AddDbContext<DomainModelSqliteContext>();
-            //
-            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider>();
+            //var sqlConnectionString = Configuration["DataAccessSqliteProvider:ConnectionString"];
 
+            //services.AddDbContext<DomainModelSqliteContext>(options =>
+            //    options.UseSqlite(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //    )
+            //);
+
+            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             // Use a MS SQL Server database
-            //services.AddEntityFramework()
-            //    .AddSqlServer()
-            //    .AddDbContext<DomainModelMsSqlServerContext>();
-            // 
-            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider>();
+            //var sqlConnectionString = Configuration["DataAccessMsSqlServerProvider:ConnectionString"];
 
+            //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
+            //    options.UseSqlServer(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //    )
+            //);
+
+            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             // Use a PostgreSQL database
-            services.AddEntityFramework()
-                .AddNpgsql()
-                .AddDbContext<DomainModelPostgreSqlContext>();
+            var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
 
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider>();
+            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+                options.UseNpgsql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNet5MultipleProject")
+                )
+            );
+
+            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
@@ -68,15 +85,24 @@ namespace AspNet5MultipleProject
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            app.UseIISPlatformHandler();
             app.UseStaticFiles();
+
             app.UseMvc();
         }
 
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
     }
 }

@@ -1,16 +1,19 @@
-﻿namespace DataAccessPostgreSqlProvider
+﻿using System;
+using System.Linq;
+using DomainModel.Model;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
+namespace DataAccessPostgreSqlProvider
 { 
-    using System;
-    using System.Linq;
-
-    using DomainModel.Model;
-
-    using Microsoft.Data.Entity;
-    using Microsoft.Extensions.Configuration;
-
-    // >dnx . ef migration add testMigration
+    // >dotnet ef migration add testMigration
     public class DomainModelPostgreSqlContext : DbContext
     {
+        public DomainModelPostgreSqlContext(DbContextOptions<DomainModelPostgreSqlContext> options) :base(options)
+        {
+        }
+        
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
@@ -25,18 +28,6 @@
             builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
             base.OnModelCreating(builder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder()
-           .AddJsonFile("../config.json")
-           .AddEnvironmentVariables();
-            var configuration = builder.Build();
-
-            var sqlConnectionString = configuration["DataAccessPostgreSqlProvider:ConnectionString"];
-
-            optionsBuilder.UseNpgsql(sqlConnectionString);
         }
 
         public override int SaveChanges()
