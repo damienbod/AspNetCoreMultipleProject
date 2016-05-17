@@ -88,14 +88,6 @@
         "portable-net45+win8"
       ]
     }
-  },
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true
-  },
-
-  "runtimeOptions": {
-    "gcServer": true
   }
 }
 

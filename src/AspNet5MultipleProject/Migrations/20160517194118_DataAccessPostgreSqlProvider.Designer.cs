@@ -8,7 +8,7 @@ using DataAccessPostgreSqlProvider;
 namespace AspNet5MultipleProject.Migrations
 {
     [DbContext(typeof(DomainModelPostgreSqlContext))]
-    [Migration("20160517184508_DataAccessPostgreSqlProvider")]
+    [Migration("20160517194118_DataAccessPostgreSqlProvider")]
     partial class DataAccessPostgreSqlProvider
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
