@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace AspNet5MultipleProject
 {
@@ -31,16 +32,16 @@ namespace AspNet5MultipleProject
         public void ConfigureServices(IServiceCollection services)
         {
             // Use a SQLite database
-            //var sqlConnectionString = Configuration["DataAccessSqliteProvider:ConnectionString"];
+            var sqlConnectionString = Configuration["DataAccessSqliteProvider:ConnectionString"];
 
-            //services.AddDbContext<DomainModelSqliteContext>(options =>
-            //    options.UseSqlite(
-            //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
-            //    )
-            //);
+            services.AddDbContext<DomainModelSqliteContext>(options =>
+                options.UseSqlite(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNet5MultipleProject")
+                )
+            );
 
-            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             // Use a MS SQL Server database
             //var sqlConnectionString = Configuration["DataAccessMsSqlServerProvider:ConnectionString"];
@@ -55,32 +56,37 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             // Use a PostgreSQL database
-            var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
+            //var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
 
-            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-                options.UseNpgsql(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNet5MultipleProject")
-                )
-            );
+            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+            //    options.UseNpgsql(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //    )
+            //);
 
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
-            JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
+            //var serializerSettings = new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //    ContractResolver = new CamelCasePropertyNamesContractResolver()
+            //};
+
+            //JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter(serializerSettings, new System.Buffers.ArrayPool<object>());
+
+            services.AddMvc().AddJsonOptions(options =>
             {
-                SerializerSettings = new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                }
-            };
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
-            services.AddMvc(
-                options =>
-                {
-                    options.OutputFormatters.Clear();
-                    options.OutputFormatters.Insert(0, jsonOutputFormatter);
-                }
-            );
+            //}
+            //options =>
+            //        {
+            //            options.OutputFormatters.Clear();
+            //            options.OutputFormatters.Insert(0, jsonOutputFormatter);
+            //        }
+            //    );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

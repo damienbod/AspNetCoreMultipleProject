@@ -5,13 +5,8 @@
             "type": "platform"
         },
         "DomainModel": "*",
-        "Npgsql": "1.0.0-rc2-release1",
+        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1",
         "Microsoft.EntityFrameworkCore": "1.0.0",
-        "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
-        "Microsoft.EntityFrameworkCore.Sqlite.Design": {
-            "version": "1.0.0",
-            "type": "build"
-        },
         "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
         "Microsoft.AspNetCore.Diagnostics": "1.0.0",
         "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
