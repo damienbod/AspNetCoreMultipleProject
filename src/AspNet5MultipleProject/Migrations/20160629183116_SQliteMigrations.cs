@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    public partial class DataAccessPostgreSqlProvider : Migration
+    public partial class SQliteMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "SourceInfo",
+                name: "SourceInfos",
                 columns: table => new
                 {
                     SourceInfoId = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:Serial", true),
+                        .Annotation("Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
@@ -21,15 +21,15 @@ namespace AspNet5MultipleProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SourceInfo", x => x.SourceInfoId);
+                    table.PrimaryKey("PK_SourceInfos", x => x.SourceInfoId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DataEventRecord",
+                name: "DataEventRecords",
                 columns: table => new
                 {
                     DataEventRecordId = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:Serial", true),
+                        .Annotation("Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SourceInfoId = table.Column<int>(nullable: false),
@@ -39,28 +39,28 @@ namespace AspNet5MultipleProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DataEventRecord", x => x.DataEventRecordId);
+                    table.PrimaryKey("PK_DataEventRecords", x => x.DataEventRecordId);
                     table.ForeignKey(
-                        name: "FK_DataEventRecord_SourceInfo_SourceInfoId1",
+                        name: "FK_DataEventRecords_SourceInfos_SourceInfoId1",
                         column: x => x.SourceInfoId1,
-                        principalTable: "SourceInfo",
+                        principalTable: "SourceInfos",
                         principalColumn: "SourceInfoId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DataEventRecord_SourceInfoId1",
-                table: "DataEventRecord",
+                name: "IX_DataEventRecords_SourceInfoId1",
+                table: "DataEventRecords",
                 column: "SourceInfoId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DataEventRecord");
+                name: "DataEventRecords");
 
             migrationBuilder.DropTable(
-                name: "SourceInfo");
+                name: "SourceInfos");
         }
     }
 }

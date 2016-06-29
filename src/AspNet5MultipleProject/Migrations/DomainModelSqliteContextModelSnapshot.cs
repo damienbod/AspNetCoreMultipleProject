@@ -3,17 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DataAccessPostgreSqlProvider;
+using DataAccessSqliteProvider;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelPostgreSqlContext))]
-    partial class DomainModelPostgreSqlContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DomainModelSqliteContext))]
+    partial class DomainModelSqliteContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896");
+                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
@@ -36,7 +36,7 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.HasIndex("SourceInfoId1");
 
-                    b.ToTable("DataEventRecord");
+                    b.ToTable("DataEventRecords");
                 });
 
             modelBuilder.Entity("DomainModel.Model.SourceInfo", b =>
@@ -54,13 +54,13 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.HasKey("SourceInfoId");
 
-                    b.ToTable("SourceInfo");
+                    b.ToTable("SourceInfos");
                 });
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
-                    b.HasOne("DomainModel.Model.SourceInfo")
-                        .WithMany()
+                    b.HasOne("DomainModel.Model.SourceInfo", "SourceInfo")
+                        .WithMany("DataEventRecords")
                         .HasForeignKey("SourceInfoId1");
                 });
         }
