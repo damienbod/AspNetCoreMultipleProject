@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace AspNet5MultipleProject
 {
@@ -66,21 +67,26 @@ namespace AspNet5MultipleProject
 
             services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
-            JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
-            {
-                SerializerSettings = new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                }
-            };
+            //var serializerSettings = new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //    ContractResolver = new CamelCasePropertyNamesContractResolver()
+            //};
 
-            services.AddMvc(
-                options =>
-                {
-                    options.OutputFormatters.Clear();
-                    options.OutputFormatters.Insert(0, jsonOutputFormatter);
-                }
-            );
+            //JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter(serializerSettings, new System.Buffers.ArrayPool<object>());
+
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            //}
+            //options =>
+            //        {
+            //            options.OutputFormatters.Clear();
+            //            options.OutputFormatters.Insert(0, jsonOutputFormatter);
+            //        }
+            //    );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
