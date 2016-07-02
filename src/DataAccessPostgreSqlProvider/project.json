@@ -5,7 +5,7 @@
             "type": "platform"
         },
         "DomainModel": "*",
-        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1",
+        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0",
         "Microsoft.EntityFrameworkCore": "1.0.0",
         "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
         "Microsoft.AspNetCore.Diagnostics": "1.0.0",
