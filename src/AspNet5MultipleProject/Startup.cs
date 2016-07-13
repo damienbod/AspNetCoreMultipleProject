@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using DataAccessMsSqlServerProvider;
 using DataAccessPostgreSqlProvider;
 using DataAccessSqliteProvider;
+using DataAccessMySqlProvider;
+using MySQL.Data.Entity.Extensions;
 using DomainModel;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
@@ -55,17 +57,29 @@ namespace AspNet5MultipleProject
 
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
-            // Use a PostgreSQL database
-            var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
+            //Use a PostgreSQL database
+            //var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
 
-            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-                options.UseNpgsql(
+            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+            //    options.UseNpgsql(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //    )
+            //);
+
+            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+
+            //Use a MySQL database
+            var sqlConnectionString = Configuration["DataAccessMySqlProvider:ConnectionString"];
+
+            services.AddDbContext<DomainModelMySqlContext>(options =>
+                options.UseMySQL(
                     sqlConnectionString,
                     b => b.MigrationsAssembly("AspNet5MultipleProject")
                 )
             );
-
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+            
+            services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
             //var serializerSettings = new JsonSerializerSettings
             //{

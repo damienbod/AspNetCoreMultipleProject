@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A4-4268-BEE5-17807D09B880}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMsSqlServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessPostgreSqlProvider", "src\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.xproj", "{A336B1FE-BD9E-4938-9E46-A5D778245488}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMySqlProvider", "src\DataAccessMySqlProvider\DataAccessMySqlProvider.xproj", "{72341334-B38F-42F4-845B-2BD006BD09CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{A336B1FE-BD9E-4938-9E46-A5D778245488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A336B1FE-BD9E-4938-9E46-A5D778245488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A336B1FE-BD9E-4938-9E46-A5D778245488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72341334-B38F-42F4-845B-2BD006BD09CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72341334-B38F-42F4-845B-2BD006BD09CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72341334-B38F-42F4-845B-2BD006BD09CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72341334-B38F-42F4-845B-2BD006BD09CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{C621779A-DC48-4322-AAC9-A813A7002A42} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{37337A23-6C0A-405D-8239-D72D192BD6D2} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{A336B1FE-BD9E-4938-9E46-A5D778245488} = {473E7822-72A4-4268-BEE5-17807D09B880}
+		{72341334-B38F-42F4-845B-2BD006BD09CB} = {473E7822-72A4-4268-BEE5-17807D09B880}
 	EndGlobalSection
 EndGlobal
