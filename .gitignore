@@ -11,3 +11,4 @@ src/AspNet5MultipleProject/project.lock.json
 bin
 obj
 .vs
+src/DataAccessMySqlProvider/project.lock.json
