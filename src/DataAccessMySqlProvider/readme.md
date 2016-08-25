@@ -144,7 +144,7 @@ If successful, the tables are created.
 <img src="https://damienbod.files.wordpress.com/2016/08/mysql_ercore_aspnetcore_02.png" alt="mySql_ercore_aspnetcore_02" width="193" height="194" class="alignnone size-full wp-image-7134" />
 
 
-Now the MySQL provider can be used in a MVC 6 controller using construction injection.
+The MySQL provider can be used in a MVC 6 controller using construction injection.
 
 ```csharp
 using System.Collections.Generic;
