@@ -35,6 +35,7 @@ namespace DataAccessMySqlProvider
             updateUpdatedProperty<SourceInfo>();
             updateUpdatedProperty<DataEventRecord>();
 
+            
             return base.SaveChanges();
         }
 
