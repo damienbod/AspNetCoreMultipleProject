@@ -4,7 +4,7 @@ This article shows how to use <a href="http://dev.mysql.com/downloads/mysql/">My
 
 Thanks to <a href="https://github.com/SapientGuardian">Noah Potash</a> for creating this example and adding his code to this code base.
 
-The Entity Framework MySQL package can be download using the NuGet package <a href="https://www.nuget.org/packages/SapientGuardian.EntityFrameworkCore.MySql/">SapientGuardian.EntityFrameworkCore.MySql</a>. At present no official provider from MySQL exists for Entity Framework Core which can be used in a ASP.NET Core application.
+The Entity Framework MySQL package can be downloaded using the NuGet package <a href="https://www.nuget.org/packages/SapientGuardian.EntityFrameworkCore.MySql/">SapientGuardian.EntityFrameworkCore.MySql</a>. At present no official provider from MySQL exists for Entity Framework Core which can be used in a ASP.NET Core application.
 
 This package can be added to the project.json file.
 ```csharp
@@ -115,18 +115,21 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The application uses the configuration from the config.json and used to get the MySQL connection string. 
+The application uses the configuration from the config.json and this file is used to get the MySQL connection string. 
+
 ```csharp
   "DataAccessMySqlProvider": {
     "ConnectionString": "server=localhost;userid=damienbod;password=1234;database=damienbod;"
   }
 ```
 
-Open the MySQL workbench and add a schemas damienbod. Also add the user damienbod which matches the connection string.
+MySQL workbench can be used to add the schema damienbod to the MySQL. A user damienbod is also required which must match the user in the connection string. If you configure the MySQL database differently, then you need to change the connection string in the config.json file.
+
 
 <img src="https://damienbod.files.wordpress.com/2016/08/mysql_ercore_aspnetcore_01.png" alt="mySql_ercore_aspnetcore_01" width="352" height="532" class="alignnone size-full wp-image-7132" />
 
 Now the database migrations can be created and the database can be updated.
+
 
 ```csharp
 >
