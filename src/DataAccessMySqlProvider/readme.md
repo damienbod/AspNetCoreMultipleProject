@@ -241,5 +241,3 @@ https://github.com/SapientGuardian/SapientGuardian.EntityFrameworkCore.MySql
 http://dev.mysql.com/downloads/mysql/
 
 http://damienbod.com/2016/01/07/experiments-with-entity-framework-7-and-asp-net-5-mvc-6/
-
-http://stackoverflow.com/questions/25128321/there-is-already-an-open-datareader-even-though-it-is-not
