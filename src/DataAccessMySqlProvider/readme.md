@@ -6,7 +6,7 @@ Thanks to <a href="https://github.com/SapientGuardian">Noah Potash</a> for creat
 
 The Entity Framework MySQL package can be downloaded using the NuGet package <a href="https://www.nuget.org/packages/SapientGuardian.EntityFrameworkCore.MySql/">SapientGuardian.EntityFrameworkCore.MySql</a>. At present no official provider from MySQL exists for Entity Framework Core which can be used in a ASP.NET Core application.
 
-This package can be added to the project.json file.
+The SapientGuardian.EntityFrameworkCore.MySql package can be added to the project.json file.
 ```csharp
 {
   "dependencies": {
@@ -31,7 +31,7 @@ This package can be added to the project.json file.
 
 ```
 
-The EfCore DbContext can be added then like any other context supported by Entity Framework Core.
+A EfCore DbContext can be added then like any other context supported by Entity Framework Core.
 
 ```csharp
 using System;
