@@ -31,7 +31,7 @@ The SapientGuardian.EntityFrameworkCore.MySql package can be added to the projec
 
 ```
 
-A EfCore DbContext can be added then like any other context supported by Entity Framework Core.
+A EfCore DbContext can be added like any other context supported by Entity Framework Core.
 
 ```csharp
 using System;
@@ -89,7 +89,7 @@ namespace DataAccessMySqlProvider
 }
 ```
 
-The DbContext can then be added to the startup class in your ASP.NET core web application.
+In an ASP.NET Core web application, the DbContext is added to the application in the startup class. In this example, the DbContext is defined in a different class library. The MigrationsAssembly needs to be defined, so that the migrations will work. If the context and the migrations are defined in the same assembly, this is not required.
 
 ```csharp
 public Startup(IHostingEnvironment env)
@@ -115,7 +115,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The application uses the configuration from the config.json and this file is used to get the MySQL connection string. 
+The application uses the configuration from the config.json. This file is used to get the MySQL connection string, which is used in the Startup class.
 
 ```csharp
   "DataAccessMySqlProvider": {
@@ -123,7 +123,7 @@ The application uses the configuration from the config.json and this file is use
   }
 ```
 
-MySQL workbench can be used to add the schema damienbod to the MySQL. A user damienbod is also required which must match the user in the connection string. If you configure the MySQL database differently, then you need to change the connection string in the config.json file.
+MySQL workbench can be used to add the schema 'damienbod' to the MySQL database. The user 'damienbod' is also required, which must match the defined user in the connection string. If you configure the MySQL database differently, then you need to change the connection string in the config.json file.
 
 
 <img src="https://damienbod.files.wordpress.com/2016/08/mysql_ercore_aspnetcore_01.png" alt="mySql_ercore_aspnetcore_01" width="352" height="532" class="alignnone size-full wp-image-7132" />
