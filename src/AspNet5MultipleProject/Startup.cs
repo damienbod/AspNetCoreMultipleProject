@@ -34,7 +34,7 @@ namespace AspNet5MultipleProject
         public void ConfigureServices(IServiceCollection services)
         {
             // Use a SQLite database
-            //var sqlConnectionString = Configuration["DataAccessSqliteProvider:ConnectionString"];
+            // var sqlConnectionString = Configuration.GetConnectionString("DataAccessSqliteProvider");
 
             //services.AddDbContext<DomainModelSqliteContext>(options =>
             //    options.UseSqlite(
@@ -46,7 +46,7 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             // Use a MS SQL Server database
-            //var sqlConnectionString = Configuration["DataAccessMsSqlServerProvider:ConnectionString"];
+            // var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
 
             //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
             //    options.UseSqlServer(
@@ -58,7 +58,7 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             //Use a PostgreSQL database
-            //var sqlConnectionString = Configuration["DataAccessPostgreSqlProvider:ConnectionString"];
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
 
             //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
             //    options.UseNpgsql(
@@ -70,7 +70,7 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             //Use a MySQL database
-            var sqlConnectionString = Configuration["DataAccessMySqlProvider:ConnectionString"];
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
 
             services.AddDbContext<DomainModelMySqlContext>(options =>
                 options.UseMySQL(

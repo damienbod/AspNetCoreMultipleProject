@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F334A68-D2EC-4359-925D-C19E3780EB80}"
 	ProjectSection(SolutionItems) = preProject
-		src\config.json = src\config.json
 		global.json = global.json
 		NuGet.Config = NuGet.Config
 		README.md = README.md
