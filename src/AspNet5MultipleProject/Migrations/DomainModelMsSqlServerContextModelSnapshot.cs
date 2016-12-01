@@ -3,17 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DataAccessSqliteProvider;
+using DataAccessMsSqlServerProvider;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelSqliteContext))]
-    partial class DomainModelSqliteContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DomainModelMsSqlServerContext))]
+    partial class DomainModelMsSqlServerContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
@@ -24,9 +25,7 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("SourceInfoId");
-
-                    b.Property<long?>("SourceInfoId1");
+                    b.Property<long>("SourceInfoId");
 
                     b.Property<DateTime>("Timestamp");
 
@@ -34,7 +33,7 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.HasKey("DataEventRecordId");
 
-                    b.HasIndex("SourceInfoId1");
+                    b.HasIndex("SourceInfoId");
 
                     b.ToTable("DataEventRecords");
                 });
@@ -42,7 +41,8 @@ namespace AspNet5MultipleProject.Migrations
             modelBuilder.Entity("DomainModel.Model.SourceInfo", b =>
                 {
                     b.Property<long>("SourceInfoId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
 
@@ -61,7 +61,8 @@ namespace AspNet5MultipleProject.Migrations
                 {
                     b.HasOne("DomainModel.Model.SourceInfo", "SourceInfo")
                         .WithMany("DataEventRecords")
-                        .HasForeignKey("SourceInfoId1");
+                        .HasForeignKey("SourceInfoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
