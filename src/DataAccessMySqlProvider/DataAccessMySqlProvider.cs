@@ -25,11 +25,17 @@ namespace DataAccessMySqlProvider
             {
                 _context.SourceInfos.Add(dataEventRecord.SourceInfo);
             }
+            else
+            {
+                var sourceInfo = _context.SourceInfos.Find(dataEventRecord.SourceInfo.SourceInfoId);
+                sourceInfo.Description = dataEventRecord.Description;
+                sourceInfo.Name = dataEventRecord.Name;
+                dataEventRecord.SourceInfo = sourceInfo;
+            }
 
             _context.DataEventRecords.Add(dataEventRecord);
             _context.SaveChanges();
         }
-
         public void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
         {
             _context.DataEventRecords.Update(dataEventRecord);

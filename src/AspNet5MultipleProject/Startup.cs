@@ -34,7 +34,7 @@ namespace AspNet5MultipleProject
         public void ConfigureServices(IServiceCollection services)
         {
             // Use a SQLite database
-            // var sqlConnectionString = Configuration.GetConnectionString("DataAccessSqliteProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessSqliteProvider");
 
             //services.AddDbContext<DomainModelSqliteContext>(options =>
             //    options.UseSqlite(
@@ -46,7 +46,7 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             // Use a MS SQL Server database
-            // var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
 
             //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
             //    options.UseSqlServer(
@@ -58,28 +58,28 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             //Use a PostgreSQL database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
 
-            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-            //    options.UseNpgsql(
+            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+                options.UseNpgsql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNet5MultipleProject")
+                )
+            );
+
+            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+
+            //Use a MySQL database
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
+
+            //services.AddDbContext<DomainModelMySqlContext>(options =>
+            //    options.UseMySQL(
             //        sqlConnectionString,
             //        b => b.MigrationsAssembly("AspNet5MultipleProject")
             //    )
             //);
 
-            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
-
-            //Use a MySQL database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
-
-            services.AddDbContext<DomainModelMySqlContext>(options =>
-                options.UseMySQL(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNet5MultipleProject")
-                )
-            );
-            
-            services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
             //var serializerSettings = new JsonSerializerSettings
             //{

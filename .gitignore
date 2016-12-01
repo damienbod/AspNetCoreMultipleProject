@@ -13,3 +13,7 @@ obj
 .vs
 src/DataAccessMySqlProvider/project.lock.json
 src/DataAccessMySqlProvider/DataAccessMySqlProvider.xproj.user
+src/DataAccessMsSqlServerProvider/project.lock.json
+.vs
+src/DataAccessSqliteProvider/project.lock.json
+src/AspNet5MultipleProject/Migrations/DomainModelSqliteContextModelSnapshot.cs

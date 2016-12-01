@@ -3,18 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DataAccessSqliteProvider;
+using DataAccessPostgreSqlProvider;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelSqliteContext))]
-    [Migration("20160629183116_SQliteMigrations")]
-    partial class SQliteMigrations
+    [DbContext(typeof(DomainModelPostgreSqlContext))]
+    [Migration("20161201210049_testMigration")]
+    partial class testMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
@@ -25,9 +26,7 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("SourceInfoId");
-
-                    b.Property<long?>("SourceInfoId1");
+                    b.Property<long>("SourceInfoId");
 
                     b.Property<DateTime>("Timestamp");
 
@@ -35,7 +34,7 @@ namespace AspNet5MultipleProject.Migrations
 
                     b.HasKey("DataEventRecordId");
 
-                    b.HasIndex("SourceInfoId1");
+                    b.HasIndex("SourceInfoId");
 
                     b.ToTable("DataEventRecords");
                 });
@@ -62,7 +61,8 @@ namespace AspNet5MultipleProject.Migrations
                 {
                     b.HasOne("DomainModel.Model.SourceInfo", "SourceInfo")
                         .WithMany("DataEventRecords")
-                        .HasForeignKey("SourceInfoId1");
+                        .HasForeignKey("SourceInfoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
