@@ -8,13 +8,13 @@ using DataAccessSqliteProvider;
 namespace AspNet5MultipleProject.Migrations
 {
     [DbContext(typeof(DomainModelSqliteContext))]
-    [Migration("20160629183116_SQliteMigrations")]
-    partial class SQliteMigrations
+    [Migration("20161201163325_testMigration")]
+    partial class testMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    public partial class SQliteMigrations : Migration
+    public partial class testMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     SourceInfoId = table.Column<long>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
@@ -29,7 +29,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     DataEventRecordId = table.Column<long>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SourceInfoId = table.Column<int>(nullable: false),
