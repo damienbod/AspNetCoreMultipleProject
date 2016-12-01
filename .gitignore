@@ -14,3 +14,4 @@ obj
 src/DataAccessMySqlProvider/project.lock.json
 src/DataAccessMySqlProvider/DataAccessMySqlProvider.xproj.user
 src/DataAccessMsSqlServerProvider/project.lock.json
+.vs
