@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DataAccessMsSqlServerProvider;
+using DataAccessPostgreSqlProvider;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelMsSqlServerContext))]
-    partial class DomainModelMsSqlServerContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DomainModelPostgreSqlContext))]
+    partial class DomainModelPostgreSqlContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>
                 {
@@ -41,8 +41,7 @@ namespace AspNet5MultipleProject.Migrations
             modelBuilder.Entity("DomainModel.Model.SourceInfo", b =>
                 {
                     b.Property<long>("SourceInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 

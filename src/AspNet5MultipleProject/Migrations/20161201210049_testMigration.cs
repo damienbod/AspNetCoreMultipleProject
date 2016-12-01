@@ -14,7 +14,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     SourceInfoId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
@@ -30,7 +30,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     DataEventRecordId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SourceInfoId = table.Column<long>(nullable: false),
