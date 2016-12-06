@@ -45,29 +45,29 @@ namespace AspNet5MultipleProject
 
             //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
-            // Use a MS SQL Server database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
+            //Use a MS SQL Server database
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
 
-            //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
-            //    options.UseSqlServer(
-            //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
-            //    )
-            //);
-
-            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
-
-            //Use a PostgreSQL database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
-
-            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-                options.UseNpgsql(
+            services.AddDbContext<DomainModelMsSqlServerContext>(options =>
+                options.UseSqlServer(
                     sqlConnectionString,
                     b => b.MigrationsAssembly("AspNet5MultipleProject")
                 )
             );
 
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
+
+            //Use a PostgreSQL database
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+
+            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+            //    options.UseNpgsql(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //    )
+            //);
+
+            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             //Use a MySQL database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
