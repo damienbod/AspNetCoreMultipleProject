@@ -39,7 +39,7 @@ namespace AspNet5MultipleProject
             //services.AddDbContext<DomainModelSqliteContext>(options =>
             //    options.UseSqlite(
             //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
             //    )
             //);
 
@@ -51,7 +51,7 @@ namespace AspNet5MultipleProject
             //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
             //    options.UseSqlServer(
             //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
             //    )
             //);
 
@@ -63,7 +63,7 @@ namespace AspNet5MultipleProject
             services.AddDbContext<DomainModelPostgreSqlContext>(options =>
                 options.UseNpgsql(
                     sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNet5MultipleProject")
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
                 )
             );
 
@@ -75,7 +75,7 @@ namespace AspNet5MultipleProject
             //services.AddDbContext<DomainModelMySqlContext>(options =>
             //    options.UseMySQL(
             //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNet5MultipleProject")
+            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
             //    )
             //);
 
