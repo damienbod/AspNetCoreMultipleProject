@@ -1,28 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A4-4268-BEE5-17807D09B880}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F334A68-D2EC-4359-925D-C19E3780EB80}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
 		NuGet.Config = NuGet.Config
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessSqliteProvider", "src\DataAccessSqliteProvider\DataAccessSqliteProvider.xproj", "{E737764A-BF5C-4B57-A26A-885550B7F364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessSqliteProvider", "src\DataAccessSqliteProvider\DataAccessSqliteProvider.csproj", "{E737764A-BF5C-4B57-A26A-885550B7F364}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNet5MultipleProject", "src\AspNet5MultipleProject\AspNet5MultipleProject.xproj", "{AD3372BE-2A8A-467E-ABB7-65739E5265A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreMultipleProject", "src\AspNetCoreMultipleProject\AspNetCoreMultipleProject.csproj", "{AD3372BE-2A8A-467E-ABB7-65739E5265A3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DomainModel", "src\DomainModel\DomainModel.xproj", "{C621779A-DC48-4322-AAC9-A813A7002A42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "src\DomainModel\DomainModel.csproj", "{C621779A-DC48-4322-AAC9-A813A7002A42}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMsSqlServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.xproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessMsSqlServerProvider", "src\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.csproj", "{37337A23-6C0A-405D-8239-D72D192BD6D2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessPostgreSqlProvider", "src\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.xproj", "{A336B1FE-BD9E-4938-9E46-A5D778245488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessPostgreSqlProvider", "src\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.csproj", "{A336B1FE-BD9E-4938-9E46-A5D778245488}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataAccessMySqlProvider", "src\DataAccessMySqlProvider\DataAccessMySqlProvider.xproj", "{72341334-B38F-42F4-845B-2BD006BD09CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessMySqlProvider", "src\DataAccessMySqlProvider\DataAccessMySqlProvider.csproj", "{72341334-B38F-42F4-845B-2BD006BD09CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
