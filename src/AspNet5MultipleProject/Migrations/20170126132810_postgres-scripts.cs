@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AspNet5MultipleProject.Migrations
 {
-    public partial class testMigration : Migration
+    public partial class postgresscripts : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

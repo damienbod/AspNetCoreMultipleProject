@@ -8,8 +8,8 @@ using DataAccessPostgreSqlProvider;
 namespace AspNet5MultipleProject.Migrations
 {
     [DbContext(typeof(DomainModelPostgreSqlContext))]
-    [Migration("20161201210049_testMigration")]
-    partial class testMigration
+    [Migration("20170126132810_postgres-scripts")]
+    partial class postgresscripts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
