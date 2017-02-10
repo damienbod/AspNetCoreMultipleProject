@@ -3,18 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using DataAccessPostgreSqlProvider;
+using DataAccessSqliteProvider;
 
-namespace AspNet5MultipleProject.Migrations
+namespace AspNetCoreMultipleProject.Migrations
 {
-    [DbContext(typeof(DomainModelPostgreSqlContext))]
-    [Migration("20161201210049_testMigration")]
-    partial class testMigration
+    [DbContext(typeof(DomainModelSqliteContext))]
+    [Migration("20170210072300_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
 
             modelBuilder.Entity("DomainModel.Model.DataEventRecord", b =>

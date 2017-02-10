@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AspNet5MultipleProject.Migrations
+namespace AspNetCoreMultipleProject.Migrations
 {
-    public partial class testMigration : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +13,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     SourceInfoId = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
@@ -30,7 +29,7 @@ namespace AspNet5MultipleProject.Migrations
                 columns: table => new
                 {
                     DataEventRecordId = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SourceInfoId = table.Column<long>(nullable: false),

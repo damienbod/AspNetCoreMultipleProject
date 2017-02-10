@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AspNet5MultipleProject.Logging;
 using DomainModel;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,9 @@ namespace DataAccessMsSqlServerProvider
         public DataAccessMsSqlServerProvider(DomainModelMsSqlServerContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
+            loggerFactory.AddProvider(new MyLoggerProvider());
             _logger = loggerFactory.CreateLogger("DataAccessMsSqlServerProvider");
+
         }
 
         public void AddDataEventRecord(DataEventRecord dataEventRecord)
