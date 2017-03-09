@@ -1,13 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A4-4268-BEE5-17807D09B880}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F334A68-D2EC-4359-925D-C19E3780EB80}"
 	ProjectSection(SolutionItems) = preProject
-		NuGet.Config = NuGet.Config
 		README.md = README.md
 	EndProjectSection
 EndProject
