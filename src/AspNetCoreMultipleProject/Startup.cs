@@ -8,7 +8,6 @@ using DataAccessSqliteProvider;
 using DataAccessMySqlProvider;
 using MySQL.Data.Entity.Extensions;
 using DomainModel;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -111,18 +110,6 @@ namespace AspNet5MultipleProject
             app.UseStaticFiles();
 
             app.UseMvc();
-        }
-
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
         }
     }
 }
