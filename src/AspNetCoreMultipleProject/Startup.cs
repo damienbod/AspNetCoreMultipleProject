@@ -42,7 +42,7 @@ namespace AspNet5MultipleProject
                 )
             );
 
-            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             //Use a MS SQL Server database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
