@@ -1,7 +1,7 @@
 # ASP.NET Core MVC with Entity Framework Core
 
 
-https://github.com/damienbod/AspNet5MultipleProject
+https://github.com/damienbod/AspNetCoreMultipleProject
 
 <strong>Posts in this series:</strong>
 <ul>	
