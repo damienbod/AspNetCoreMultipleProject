@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace AspNet5MultipleProject
+namespace AspNetCoreMultipleProject
 {
     public class Program
     {

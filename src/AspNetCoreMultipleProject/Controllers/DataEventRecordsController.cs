@@ -4,7 +4,7 @@ using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace AspNet5MultipleProject.Controllers
+namespace AspNetCoreMultipleProject.Controllers
 {
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller

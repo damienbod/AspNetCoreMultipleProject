@@ -6,7 +6,6 @@ using DataAccessMsSqlServerProvider;
 using DataAccessPostgreSqlProvider;
 using DataAccessSqliteProvider;
 using DataAccessMySqlProvider;
-using MySQL.Data.Entity.Extensions;
 using DomainModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 
-namespace AspNet5MultipleProject
+namespace AspNetCoreMultipleProject
 {
     public class Startup
     {
@@ -45,16 +44,16 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             //Use a MS SQL Server database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
 
-            services.AddDbContext<DomainModelMsSqlServerContext>(options =>
-                options.UseSqlServer(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-                )
-            );
+            //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
+            //    options.UseSqlServer(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+            //    )
+            //);
 
-            services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             //Use a PostgreSQL database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
@@ -69,16 +68,16 @@ namespace AspNet5MultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             //Use a MySQL database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
 
-            //services.AddDbContext<DomainModelMySqlContext>(options =>
-            //    options.UseMySQL(
-            //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-            //    )
-            //);
+            services.AddDbContext<DomainModelMySqlContext>(options =>
+                options.UseMySql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+                )
+            );
 
-            //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
             //var serializerSettings = new JsonSerializerSettings
             //{
