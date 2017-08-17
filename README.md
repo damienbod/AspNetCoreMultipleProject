@@ -1,6 +1,7 @@
 # ASP.NET Core MVC with Entity Framework Core
 
-<a href="https://github.com/damienbod/AspNet5MultipleProject">VS2017 msbuild</a> | <a href="https://github.com/damienbod/AspNet5MultipleProject/tree/VS2015-project-json">VS2015 project.json</a>
+
+https://github.com/damienbod/AspNet5MultipleProject
 
 <strong>Posts in this series:</strong>
 <ul>	
