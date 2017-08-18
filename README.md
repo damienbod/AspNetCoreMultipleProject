@@ -3,6 +3,13 @@
 
 https://github.com/damienbod/AspNetCoreMultipleProject
 
+
+|                           | Build                                                                                                                                                             |       
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .NET Core                 | [![Build status](https://ci.appveyor.com/api/projects/status/97eaoaw0sw5lpefs?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremultipleproject)  |
+
+
+
 <strong>Posts in this series:</strong>
 <ul>	
     <li><a href="https://damienbod.com/2016/01/07/experiments-with-entity-framework-7-and-asp-net-5-mvc-6/">Experiments with Entity Framework Core and ASP.NET Core MVC</a></li>
