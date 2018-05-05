@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AspNetCoreMultipleProject.Migrations
 {
-    public partial class testMigration : Migration
+    public partial class testPG : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

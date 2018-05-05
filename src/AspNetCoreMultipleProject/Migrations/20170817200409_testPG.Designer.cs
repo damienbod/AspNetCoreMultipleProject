@@ -11,8 +11,8 @@ using System;
 namespace AspNetCoreMultipleProject.Migrations
 {
     [DbContext(typeof(DomainModelMySqlContext))]
-    [Migration("20170817052604_testMigration")]
-    partial class testMigration
+    [Migration("20170817200409_testPG")]
+    partial class testPG
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
