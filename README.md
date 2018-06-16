@@ -63,3 +63,7 @@ Context-Type: application/json
   }, 
   "SourceInfoId": 0
 }
+
+### GET
+
+http://localhost:44388/api/dataeventrecords/SourceInfos?withChildren=true
