@@ -36,6 +36,13 @@ dotnet restore
 dotnet ef migrations add sqliteMigration --context DomainModelSqliteContext
 dotnet ef database update --context DomainModelSqliteContext
 
+### PostGreSQL 
+
+dotnet restore
+dotnet ef migrations add postgresqlMigration --context DomainModelPostgreSqlContext
+dotnet ef database update --context DomainModelPostgreSqlContext
+
+
 ## Testing
 
 https://localhost:44388/api/dataeventrecords
