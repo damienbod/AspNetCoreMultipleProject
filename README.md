@@ -21,3 +21,38 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 ## History
 
 2018-06-16 Updated to .NET Core 2.1
+
+## Setup
+
+### MS SQL Server
+
+dotnet restore
+dotnet ef migrations add mssqlMigration --context DomainModelMsSqlServerContext
+dotnet ef database update --context DomainModelMsSqlServerContext
+
+### SQLite 
+
+dotnet restore
+dotnet ef migrations add sqliteMigration --context DomainModelSqliteContext
+dotnet ef database update --context DomainModelSqliteContext
+
+## Testing
+
+https://localhost:44388/api/dataeventrecords
+Context-Type: application/json
+
+{
+  "DataEventRecordId":0,
+  "Name":"Funny data more",
+  "Description":"no",
+  "Timestamp":"2015-12-27T08:31:35Z",
+  "SourceInfo":
+  { 
+    "SourceInfoId":0,
+    "Name":"Beauty",
+    "Description":"first Source",
+    "Timestamp":"2015-12-23T08:31:35+01:00",
+    "DataEventRecords":[]
+  }, 
+  "SourceInfoId": 0
+}
