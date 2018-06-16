@@ -42,6 +42,11 @@ dotnet restore
 dotnet ef migrations add postgresqlMigration --context DomainModelPostgreSqlContext
 dotnet ef database update --context DomainModelPostgreSqlContext
 
+### MySQL 
+
+dotnet restore
+dotnet ef migrations add mySqlMigration --context DomainModelMySqlContext
+dotnet ef database update --context DomainModelMySqlContext
 
 ## Testing
 
