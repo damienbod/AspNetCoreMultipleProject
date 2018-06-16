@@ -27,25 +27,33 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 ### MS SQL Server
 
 dotnet restore
+
 dotnet ef migrations add mssqlMigration --context DomainModelMsSqlServerContext
+
 dotnet ef database update --context DomainModelMsSqlServerContext
 
 ### SQLite 
 
 dotnet restore
+
 dotnet ef migrations add sqliteMigration --context DomainModelSqliteContext
+
 dotnet ef database update --context DomainModelSqliteContext
 
 ### PostGreSQL 
 
 dotnet restore
+
 dotnet ef migrations add postgresqlMigration --context DomainModelPostgreSqlContext
+
 dotnet ef database update --context DomainModelPostgreSqlContext
 
 ### MySQL 
 
 dotnet restore
+
 dotnet ef migrations add mySqlMigration --context DomainModelMySqlContext
+
 dotnet ef database update --context DomainModelMySqlContext
 
 ## Testing
