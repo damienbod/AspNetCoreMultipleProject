@@ -16,3 +16,8 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 	<li><a href="https://damienbod.com/2016/01/11/asp-net-5-with-postgresql-and-entity-framework-7/">ASP.NET Core with PostgreSQL and Entity Framework Core</a></li>
 	<li><a href="https://damienbod.com/2016/08/26/asp-net-core-1-0-with-mysql-and-entity-framework-core/">ASP.NET Core with MySQL and Entity Framework Core</a></li>
 </ul>
+
+
+## History
+
+2018-06-16 Updated to .NET Core 2.1
