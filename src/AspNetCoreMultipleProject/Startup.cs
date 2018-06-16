@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMultipleProject
 {
@@ -32,16 +33,16 @@ namespace AspNetCoreMultipleProject
         public void ConfigureServices(IServiceCollection services)
         {
             // Use a SQLite database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessSqliteProvider");
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessSqliteProvider");
 
-            //services.AddDbContext<DomainModelSqliteContext>(options =>
-            //    options.UseSqlite(
-            //        sqlConnectionString,
-            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-            //    )
-            //);
+            services.AddDbContext<DomainModelSqliteContext>(options =>
+                options.UseSqlite(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+                )
+            );
 
-            //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             //Use a MS SQL Server database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
@@ -68,16 +69,16 @@ namespace AspNetCoreMultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             //Use a MySQL database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
 
-            services.AddDbContext<DomainModelMySqlContext>(options =>
-                options.UseMySql(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-                )
-            );
+            //services.AddDbContext<DomainModelMySqlContext>(options =>
+            //    options.UseMySql(
+            //        sqlConnectionString,
+            //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+            //    )
+            //);
 
-            services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
             //var serializerSettings = new JsonSerializerSettings
             //{
@@ -90,7 +91,7 @@ namespace AspNetCoreMultipleProject
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            });
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //}
             //options =>
