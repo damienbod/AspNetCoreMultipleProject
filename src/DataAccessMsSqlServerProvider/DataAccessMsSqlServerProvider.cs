@@ -25,6 +25,8 @@ namespace DataAccessMsSqlServerProvider
             if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
             {
                 _context.SourceInfos.Add(dataEventRecord.SourceInfo);
+                _context.SaveChanges();
+                dataEventRecord.SourceInfoId = dataEventRecord.SourceInfo.SourceInfoId;
             }
             else
             {

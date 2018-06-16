@@ -54,7 +54,7 @@ namespace AspNetCoreMultipleProject
                 )
             );
 
-            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
+            services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             //Use a PostgreSQL database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
