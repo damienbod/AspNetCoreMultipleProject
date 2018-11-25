@@ -34,9 +34,16 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpGet("{id}")]
-        public DataEventRecord Get(long id)
+        [ProducesResponseType(typeof(DataEventRecord), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Get(long id)
         {
-            return _dataAccessProvider.GetDataEventRecord(id);
+            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            {
+                return NotFound($"DataEventRecord with Id {id} does not exist");
+            }
+
+            return Ok(await _dataAccessProvider.GetDataEventRecord(id));
         }
 
         [HttpPost]

@@ -9,7 +9,7 @@ namespace DomainModel
         void AddDataEventRecord(DataEventRecord dataEventRecord);
         void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord);
         Task DeleteDataEventRecord(long dataEventRecordId);
-        DataEventRecord GetDataEventRecord(long dataEventRecordId);
+        Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId);
         Task<List<DataEventRecord>> GetDataEventRecords();
         Task<List<SourceInfo>> GetSourceInfos(bool withChildren);
         Task<bool> DataEventRecordExists(long id);

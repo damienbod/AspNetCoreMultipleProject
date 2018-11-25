@@ -51,9 +51,9 @@ namespace DataAccessSqliteProvider
             await _context.SaveChangesAsync();
         }
 
-        public DataEventRecord GetDataEventRecord(long dataEventRecordId)
+        public async Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId)
         {
-            return _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
+            return await _context.DataEventRecords.FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
         }
 
         public async Task<List<DataEventRecord>> GetDataEventRecords()
