@@ -27,9 +27,10 @@ namespace AspNetCoreMultipleProject.Controllers
 
         [HttpGet]
         [Route("SourceInfos")]
-        public IEnumerable<SourceInfo> GetSourceInfos(bool withChildren)
+        [ProducesResponseType(typeof(IEnumerable<SourceInfo>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetSourceInfos(bool withChildren)
         {
-            return _dataAccessProvider.GetSourceInfos(withChildren);
+            return Ok(await _dataAccessProvider.GetSourceInfos(withChildren));
         }
 
         [HttpGet("{id}")]
