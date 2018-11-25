@@ -54,6 +54,11 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
+            if (value.SourceInfo == null && value.SourceInfoId == 0)
+            {
+                return BadRequest();
+            }
+
             await _dataAccessProvider.AddDataEventRecord(value);
             return Created("/api/DataEventRecord", value);
         }
