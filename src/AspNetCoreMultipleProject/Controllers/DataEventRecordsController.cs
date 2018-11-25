@@ -51,9 +51,26 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(long id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Conflict)]
+        public async Task<IActionResult> Delete(long id)
         {
-            _dataAccessProvider.DeleteDataEventRecord(id);
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            // TODO
+            //if (!await _dataAccessProvider.DataEventRecordExists(id))
+            //{
+            //    return NotFound($"DataEventRecord with Id {id} does not exist");
+            //}
+
+            await _dataAccessProvider.DeleteDataEventRecord(id);
+
+            return Ok();
+            
         }
     }
 }

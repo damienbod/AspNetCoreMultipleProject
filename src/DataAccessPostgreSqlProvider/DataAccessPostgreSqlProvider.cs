@@ -45,11 +45,11 @@ namespace DataAccessPostgreSqlProvider
             _context.SaveChanges();
         }
 
-        public void DeleteDataEventRecord(long dataEventRecordId)
+        public async Task DeleteDataEventRecord(long dataEventRecordId)
         {
             var entity = _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
             _context.DataEventRecords.Remove(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public DataEventRecord GetDataEventRecord(long dataEventRecordId)
