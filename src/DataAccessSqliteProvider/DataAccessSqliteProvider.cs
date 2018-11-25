@@ -5,7 +5,8 @@ using Microsoft.Extensions.Logging;
 using DomainModel;
 using DomainModel.Model;
 using System;
-    
+using System.Threading.Tasks;
+
 namespace DataAccessSqliteProvider
 {
     public class DataAccessSqliteProvider : IDataAccessProvider
@@ -55,10 +56,10 @@ namespace DataAccessSqliteProvider
             return _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
         }
 
-        public List<DataEventRecord> GetDataEventRecords()
+        public async Task<List<DataEventRecord>> GetDataEventRecords()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToList();
+            return await _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToListAsync();
         }
 
         public List<SourceInfo> GetSourceInfos(bool withChildren)

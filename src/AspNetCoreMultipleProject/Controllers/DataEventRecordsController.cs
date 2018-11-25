@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using DomainModel;
 using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +19,10 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DataEventRecord> Get()
+        [ProducesResponseType(typeof(IEnumerable<DataEventRecord>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get()
         {
-            return _dataAccessProvider.GetDataEventRecords();
+            return Ok(await _dataAccessProvider.GetDataEventRecords());
         }
 
         [HttpGet]

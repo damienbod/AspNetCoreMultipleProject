@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DomainModel;
 using DomainModel.Model;
 
@@ -56,10 +57,10 @@ namespace DataAccessPostgreSqlProvider
             return _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
         }
 
-        public List<DataEventRecord> GetDataEventRecords()
+        public async Task<List<DataEventRecord>> GetDataEventRecords()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToList();
+            return await _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToListAsync();
         }
 
         public List<SourceInfo> GetSourceInfos(bool withChildren)
