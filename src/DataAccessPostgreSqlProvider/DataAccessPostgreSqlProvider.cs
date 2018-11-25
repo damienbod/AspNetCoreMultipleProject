@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DomainModel;
 using DomainModel.Model;
 
@@ -20,7 +21,7 @@ namespace DataAccessPostgreSqlProvider
             _logger = loggerFactory.CreateLogger("DataAccessPostgreSqlProvider");
         }
 
-        public void AddDataEventRecord(DataEventRecord dataEventRecord)
+        public async Task AddDataEventRecord(DataEventRecord dataEventRecord)
         {
             if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
             {
@@ -35,42 +36,50 @@ namespace DataAccessPostgreSqlProvider
             }
 
             _context.DataEventRecords.Add(dataEventRecord);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
+        public async Task UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
         {
             _context.DataEventRecords.Update(dataEventRecord);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteDataEventRecord(long dataEventRecordId)
+        public async Task DeleteDataEventRecord(long dataEventRecordId)
         {
             var entity = _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
             _context.DataEventRecords.Remove(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public DataEventRecord GetDataEventRecord(long dataEventRecordId)
+        public async Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId)
         {
-            return _context.DataEventRecords.First(t => t.DataEventRecordId == dataEventRecordId);
+            return await _context.DataEventRecords.FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
         }
 
-        public List<DataEventRecord> GetDataEventRecords()
+        public async Task<List<DataEventRecord>> GetDataEventRecords()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToList();
+            return await _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToListAsync();
         }
 
-        public List<SourceInfo> GetSourceInfos(bool withChildren)
+        public async Task<List<SourceInfo>> GetSourceInfos(bool withChildren)
         {
             // Using the shadow property EF.Property<DateTime>(srcInfo)
             if (withChildren)
             {
-                return _context.SourceInfos.Include(s => s.DataEventRecords).OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToList();
+                return await _context.SourceInfos.Include(s => s.DataEventRecords).OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToListAsync();
             }
 
-            return _context.SourceInfos.OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToList();
+            return await _context.SourceInfos.OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToListAsync();
+        }
+
+        public async Task<bool> DataEventRecordExists(long id)
+        {
+            var filteredDataEventRecords = _context.DataEventRecords
+                .Where(item => item.DataEventRecordId == id);
+
+            return await filteredDataEventRecords.AnyAsync();
         }
     }
 }
