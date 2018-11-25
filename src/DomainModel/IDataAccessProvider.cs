@@ -11,6 +11,7 @@ namespace DomainModel
         Task DeleteDataEventRecord(long dataEventRecordId);
         DataEventRecord GetDataEventRecord(long dataEventRecordId);
         Task<List<DataEventRecord>> GetDataEventRecords();
-        List<SourceInfo> GetSourceInfos(bool withChildren);       
+        List<SourceInfo> GetSourceInfos(bool withChildren);
+        Task<bool> DataEventRecordExists(long id);
     }
 }

@@ -73,5 +73,13 @@ namespace DataAccessPostgreSqlProvider
 
             return _context.SourceInfos.OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToList();
         }
+
+        public async Task<bool> DataEventRecordExists(long id)
+        {
+            var filteredDataEventRecords = _context.DataEventRecords
+                .Where(item => item.DataEventRecordId == id);
+
+            return await filteredDataEventRecords.AnyAsync();
+        }
     }
 }

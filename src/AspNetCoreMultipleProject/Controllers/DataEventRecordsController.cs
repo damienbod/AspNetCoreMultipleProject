@@ -61,11 +61,10 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            // TODO
-            //if (!await _dataAccessProvider.DataEventRecordExists(id))
-            //{
-            //    return NotFound($"DataEventRecord with Id {id} does not exist");
-            //}
+            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            {
+                return NotFound($"DataEventRecord with Id {id} does not exist");
+            }
 
             await _dataAccessProvider.DeleteDataEventRecord(id);
 
