@@ -47,15 +47,34 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]DataEventRecord value)
+        public async Task<IActionResult> Post([FromBody]DataEventRecord value)
         {
-            _dataAccessProvider.AddDataEventRecord(value);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _dataAccessProvider.AddDataEventRecord(value);
+            return Created("/api/DataEventRecord", value);
         }
 
         [HttpPut("{id}")]
-        public void Put(long id, [FromBody]DataEventRecord value)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Put(long id, [FromBody]DataEventRecord value)
         {
-            _dataAccessProvider.UpdateDataEventRecord(id, value);
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            {
+                return NotFound($"DataEventRecord with Id {id} does not exist");
+            }
+
+            await _dataAccessProvider.UpdateDataEventRecord(id, value);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

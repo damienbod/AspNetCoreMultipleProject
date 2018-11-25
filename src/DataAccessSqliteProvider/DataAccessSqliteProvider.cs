@@ -20,7 +20,7 @@ namespace DataAccessSqliteProvider
             _logger = loggerFactory.CreateLogger("DataAccessSqliteProvider");
         }
 
-        public void AddDataEventRecord(DataEventRecord dataEventRecord)
+        public async Task AddDataEventRecord(DataEventRecord dataEventRecord)
         {           
             if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
             {
@@ -35,13 +35,13 @@ namespace DataAccessSqliteProvider
             }
 
             _context.DataEventRecords.Add(dataEventRecord);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
+        public async Task UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
         {
             _context.DataEventRecords.Update(dataEventRecord);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteDataEventRecord(long dataEventRecordId)
