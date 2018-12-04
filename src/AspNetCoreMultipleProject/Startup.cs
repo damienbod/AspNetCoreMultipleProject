@@ -113,11 +113,8 @@ namespace AspNetCoreMultipleProject
             //    );
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
-
             app.UseStaticFiles();
 
             app.UseMvc();
