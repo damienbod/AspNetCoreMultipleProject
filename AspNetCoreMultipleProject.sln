@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{473E7822-72A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F334A68-D2EC-4359-925D-C19E3780EB80}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -63,5 +64,8 @@ Global
 		{37337A23-6C0A-405D-8239-D72D192BD6D2} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{A336B1FE-BD9E-4938-9E46-A5D778245488} = {473E7822-72A4-4268-BEE5-17807D09B880}
 		{72341334-B38F-42F4-845B-2BD006BD09CB} = {473E7822-72A4-4268-BEE5-17807D09B880}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {275798F3-A1DA-4BC7-9033-46E4684FBD6C}
 	EndGlobalSection
 EndGlobal
