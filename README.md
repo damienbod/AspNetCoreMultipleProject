@@ -20,6 +20,8 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 
 ## History
 
+2019-03-03 Updated NuGet packages
+
 2018-12-04 Updated to .NET Core 2.2
 
 2018-11-28 Updated to .NET Core 2.2 preview
