@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using DataAccessMsSqlServerProvider;
+using DataAccessPostgreSqlProvider;
 
 namespace AspNetCoreMultipleProject
 {
@@ -35,28 +36,28 @@ namespace AspNetCoreMultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessSqliteProvider.DataAccessSqliteProvider>();
 
             //Use a MS SQL Server database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMsSqlServerProvider");
 
-            services.AddDbContext<DomainModelMsSqlServerContext>(options =>
-                options.UseSqlServer(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-                )
-            );
-
-            services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
-
-            //Use a PostgreSQL database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
-
-            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-            //    options.UseNpgsql(
+            //services.AddDbContext<DomainModelMsSqlServerContext>(options =>
+            //    options.UseSqlServer(
             //        sqlConnectionString,
             //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
             //    )
             //);
 
-            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
+
+            //Use a PostgreSQL database
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+
+            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+                options.UseNpgsql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+                )
+            );
+
+            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
 
             //Use a MySQL database
             //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");

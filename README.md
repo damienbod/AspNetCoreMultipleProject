@@ -70,6 +70,12 @@ dotnet ef migrations add postgresqlMigration --context DomainModelPostgreSqlCont
 
 dotnet ef database update --context DomainModelPostgreSqlContext
 
+-or-
+
+Add-Migration "postgresqlMigration" -c DomainModelPostgreSqlContext  
+
+Update-Database -c DomainModelPostgreSqlContext
+
 ### MySQL 
 
 dotnet restore
