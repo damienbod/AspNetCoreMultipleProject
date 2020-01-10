@@ -76,7 +76,8 @@ namespace AspNetCoreMultipleProject
 
             //JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter(serializerSettings, new System.Buffers.ArrayPool<object>());
 
-            services.AddControllers();
+            services.AddControllers()
+              .AddNewtonsoftJson();
 
             //services.AddMvc().AddJsonOptions(options =>
             //{
