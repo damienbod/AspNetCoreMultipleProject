@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using DataAccessMsSqlServerProvider;
 using DataAccessPostgreSqlProvider;
+using DataAccessMySqlProvider;
 
 namespace AspNetCoreMultipleProject
 {
@@ -48,28 +49,28 @@ namespace AspNetCoreMultipleProject
             //services.AddScoped<IDataAccessProvider, DataAccessMsSqlServerProvider.DataAccessMsSqlServerProvider>();
 
             //Use a PostgreSQL database
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
 
-            services.AddDbContext<DomainModelPostgreSqlContext>(options =>
-                options.UseNpgsql(
-                    sqlConnectionString,
-                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-                )
-            );
-
-            services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
-
-            //Use a MySQL database
-            //var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
-
-            //services.AddDbContext<DomainModelMySqlContext>(options =>
-            //    options.UseMySql(
+            //services.AddDbContext<DomainModelPostgreSqlContext>(options =>
+            //    options.UseNpgsql(
             //        sqlConnectionString,
             //        b => b.MigrationsAssembly("AspNetCoreMultipleProject")
             //    )
             //);
 
-            //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
+            //services.AddScoped<IDataAccessProvider, DataAccessPostgreSqlProvider.DataAccessPostgreSqlProvider>();
+
+            //Use a MySQL database
+            var sqlConnectionString = Configuration.GetConnectionString("DataAccessMySqlProvider");
+
+            services.AddDbContext<DomainModelMySqlContext>(options =>
+                options.UseMySql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+                )
+            );
+
+            services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
             //var serializerSettings = new JsonSerializerSettings
             //{

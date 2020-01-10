@@ -84,6 +84,12 @@ dotnet ef migrations add mySqlMigration --context DomainModelMySqlContext
 
 dotnet ef database update --context DomainModelMySqlContext
 
+-or-
+
+Add-Migration "mySqlMigration" -c DomainModelMySqlContext  
+
+Update-Database -c DomainModelMySqlContext
+
 ## Testing
 
 https://localhost:44388/api/dataeventrecords
