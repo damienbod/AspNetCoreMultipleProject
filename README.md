@@ -1,4 +1,4 @@
-# ASP.NET Core MVC with Entity Framework Core
+# ASP.NET Core API with Entity Framework Core and Swagger
 
 
 https://github.com/damienbod/AspNetCoreMultipleProject
