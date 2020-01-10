@@ -72,24 +72,11 @@ namespace AspNetCoreMultipleProject
 
             //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
-            //var serializerSettings = new JsonSerializerSettings
-            //{
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            //    ContractResolver = new CamelCasePropertyNamesContractResolver()
-            //};
-
-            //JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter(serializerSettings, new System.Buffers.ArrayPool<object>());
-
             services.AddControllers()
               .AddNewtonsoftJson(options =>
               {
                   options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
               });
-
-            //services.AddMvc().AddJsonOptions(options =>
-            //{
-            //    //options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            //});
 
             services.AddSwaggerGen(c =>
             {
@@ -99,14 +86,6 @@ namespace AspNetCoreMultipleProject
                     Title = "API",
                 });
             });
-
-            //}
-            //options =>
-            //        {
-            //            options.OutputFormatters.Clear();
-            //            options.OutputFormatters.Insert(0, jsonOutputFormatter);
-            //        }
-            //    );
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
