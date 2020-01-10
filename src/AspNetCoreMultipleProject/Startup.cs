@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace AspNetCoreMultipleProject
 {
@@ -77,7 +78,10 @@ namespace AspNetCoreMultipleProject
             //JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter(serializerSettings, new System.Buffers.ArrayPool<object>());
 
             services.AddControllers()
-              .AddNewtonsoftJson();
+              .AddNewtonsoftJson(options =>
+              {
+                  options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+              });
 
             //services.AddMvc().AddJsonOptions(options =>
             //{

@@ -50,6 +50,12 @@ dotnet ef migrations add sqliteMigration --context DomainModelSqliteContext
 
 dotnet ef database update --context DomainModelSqliteContext
 
+-or-
+
+Add-Migration "sqliteMigration" -c DomainModelSqliteContext  
+
+Update-Database -c DomainModelSqliteContext
+
 ### PostGreSQL 
 
 dotnet restore

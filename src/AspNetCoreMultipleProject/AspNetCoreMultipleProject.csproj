@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\**\*;Views;Areas\**\Views;appsettings.json;config.json;web.config">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DataAccessMsSqlServerProvider\DataAccessMsSqlServerProvider.csproj" />
     <ProjectReference Include="..\DataAccessMySqlProvider\DataAccessMySqlProvider.csproj" />
     <ProjectReference Include="..\DataAccessPostgreSqlProvider\DataAccessPostgreSqlProvider.csproj" />
@@ -31,7 +25,4 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Migrations\" />
-    </ItemGroup>
 </Project>
