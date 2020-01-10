@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspNetCoreMultipleProject.Migrations
 {
-    public partial class mssqlMigration : Migration
+    public partial class sqliteMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +12,7 @@ namespace AspNetCoreMultipleProject.Migrations
                 columns: table => new
                 {
                     SourceInfoId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
@@ -29,7 +28,7 @@ namespace AspNetCoreMultipleProject.Migrations
                 columns: table => new
                 {
                     DataEventRecordId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false),
