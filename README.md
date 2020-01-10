@@ -38,9 +38,15 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 
 dotnet restore
 
-dotnet ef migrations add mssqlMigration --context DomainModelMsSqlServerContext
+dotnet ef migrations add microsoftSql --context DomainModelMsSqlServerContext
 
 dotnet ef database update --context DomainModelMsSqlServerContext
+
+-or-
+
+Add-Migration "microsoftSql" -c DomainModelMsSqlServerContext  
+
+Update-Database -c DomainModelMsSqlServerContext
 
 ### SQLite 
 
