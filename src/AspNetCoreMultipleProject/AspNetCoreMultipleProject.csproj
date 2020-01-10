@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>AspNetCoreMultipleProject</AssemblyName>
     <PackageId>AspNet5MultipleProject</PackageId>
+    <StartupObject>AspNetCoreMultipleProject.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
