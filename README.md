@@ -20,6 +20,8 @@ https://github.com/damienbod/AspNetCoreMultipleProject
 
 ## History
 
+2020-11-08 Updated nuget packages
+
 2020-10-10 Updated nuget packages
 
 2020-01-10 Updated to .NET Core 3.1
