@@ -3,12 +3,7 @@
 
 https://github.com/damienbod/AspNetCoreMultipleProject
 
-
-|                           | Build                                                                                                                                                             |       
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| .NET Core                 | [![Build status](https://ci.appveyor.com/api/projects/status/97eaoaw0sw5lpefs?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremultipleproject)  |
-
-
+[![.NET](https://github.com/damienbod/AspNetCoreMultipleProject/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreMultipleProject/actions/workflows/dotnet.yml)
 
 <strong>Posts in this series:</strong>
 <ul>	
