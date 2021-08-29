@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using DomainModel;
-using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMultipleProject.Controllers
@@ -11,28 +8,18 @@ namespace AspNetCoreMultipleProject.Controllers
     [Route("api/[controller]")]
     public class SourceInfosController : Controller
     {
-        private readonly IDataAccessProvider _dataAccessProvider;
+        private readonly BusinessProvider _businessProvider;
 
-        public SourceInfosController(IDataAccessProvider dataAccessProvider)
+        public SourceInfosController(BusinessProvider businessProvider)
         {
-            _dataAccessProvider = dataAccessProvider;
+            _businessProvider = businessProvider;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<SourceInfoVm>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _dataAccessProvider.GetSourceInfos(false);
-
-            var results = data.Select(si => new SourceInfoVm
-            {
-                Timestamp = si.Timestamp,
-                Description = si.Description,
-                Name = si.Name,
-                SourceInfoId = si.SourceInfoId
-            });
-
-            return Ok(results);
+            return Ok(await _businessProvider.GetSourceInfos());
         }
 
         [HttpGet("{id}")]
@@ -40,21 +27,12 @@ namespace AspNetCoreMultipleProject.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get(long id)
         {
-            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            if (!await _businessProvider.ExistsSourceInfo(id))
             {
-                return NotFound($"DataEventRecord with Id {id} does not exist");
+                return NotFound($"SourceInfoVm with Id {id} does not exist");
             }
 
-            var si = await _dataAccessProvider.GetDataEventRecord(id);
-            var result = new SourceInfoVm
-            {
-                Timestamp = si.Timestamp,
-                Description = si.Description,
-                Name = si.Name,
-                SourceInfoId = si.SourceInfoId
-            };
-
-            return Ok(result);
+            return Ok(await _businessProvider.GetSourceInfo(id));
         }
 
         [HttpPost]
@@ -65,47 +43,14 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            if (value.SourceInfoId > 0 && await _dataAccessProvider.SourceInfoExists(value.SourceInfoId))
+            if (value.SourceInfoId > 0 && await _businessProvider.ExistsSourceInfo(value.SourceInfoId))
             {
                 return BadRequest($"SourceInfo with Id {value.SourceInfoId} exists");
             }
 
-            var sourceInfo = new SourceInfo
-            {
-                Timestamp = value.Timestamp,
-                Description = value.Description,
-                Name = value.Name,
-                SourceInfoId = value.SourceInfoId
-            };
-
-            var si = await _dataAccessProvider.AddSourceInfo(sourceInfo);
-
-            var result = new SourceInfoVm
-            {
-                Timestamp = si.Timestamp,
-                Description = si.Description,
-                Name = si.Name,
-                SourceInfoId = si.SourceInfoId
-            };
+            var result = _businessProvider.CreateSourceInfo(value);
 
             return Created("/api/SourceInfo", result);
         }
-
-        //[HttpGet("all/{withChildren}")]
-        //[ProducesResponseType(typeof(IEnumerable<SourceInfoVm>), (int)HttpStatusCode.OK)]
-        //public async Task<IActionResult> GetSourceInfos(bool withChildren)
-        //{
-        //    var data = await _dataAccessProvider.GetSourceInfos(withChildren);
-
-        //    var results = data.Select(si => new SourceInfoVm
-        //    {
-        //        Timestamp = si.Timestamp,
-        //        Description = si.Description,
-        //        Name = si.Name,
-        //        SourceInfoId = si.SourceInfoId
-        //    });
-
-        //    return Ok(results);
-        //}
     }
 }

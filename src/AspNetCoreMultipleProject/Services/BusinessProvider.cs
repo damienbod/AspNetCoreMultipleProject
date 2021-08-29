@@ -1,5 +1,6 @@
 ﻿using DomainModel;
 using DomainModel.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -137,6 +138,63 @@ namespace AspNetCoreMultipleProject
         public async Task DeleteDataEventRecord(long id)
         {
             await _dataAccessProvider.DeleteDataEventRecord(id);
+        }
+
+        public async Task<IEnumerable<SourceInfoVm>> GetSourceInfos()
+        {
+            var data = await _dataAccessProvider.GetSourceInfos(false);
+
+            var results = data.Select(si => new SourceInfoVm
+            {
+                Timestamp = si.Timestamp,
+                Description = si.Description,
+                Name = si.Name,
+                SourceInfoId = si.SourceInfoId
+            });
+
+            return results;
+        }
+
+        public async Task<bool> ExistsSourceInfo(long id)
+        {
+            return await _dataAccessProvider.SourceInfoExists(id);
+        }
+
+        public async Task<SourceInfoVm> GetSourceInfo(long id)
+        {
+            var si = await _dataAccessProvider.GetDataEventRecord(id);
+            var result = new SourceInfoVm
+            {
+                Timestamp = si.Timestamp,
+                Description = si.Description,
+                Name = si.Name,
+                SourceInfoId = si.SourceInfoId
+            };
+
+            return result;
+        }
+
+        public async Task<SourceInfoVm> CreateSourceInfo(SourceInfoVm value)
+        {
+            var sourceInfo = new SourceInfo
+            {
+                Timestamp = value.Timestamp,
+                Description = value.Description,
+                Name = value.Name,
+                SourceInfoId = value.SourceInfoId
+            };
+
+            var si = await _dataAccessProvider.AddSourceInfo(sourceInfo);
+
+            var result = new SourceInfoVm
+            {
+                Timestamp = si.Timestamp,
+                Description = si.Description,
+                Name = si.Name,
+                SourceInfoId = si.SourceInfoId
+            };
+
+            return result;
         }
     }
 }
