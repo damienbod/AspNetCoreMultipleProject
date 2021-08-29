@@ -54,7 +54,9 @@ namespace DataAccessPostgreSqlProvider
 
         public async Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId)
         {
-            return await _context.DataEventRecords.FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
+            return await _context.DataEventRecords
+                .Include(s => s.SourceInfo)
+                .FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
         }
 
         public async Task<List<DataEventRecord>> GetDataEventRecords()
