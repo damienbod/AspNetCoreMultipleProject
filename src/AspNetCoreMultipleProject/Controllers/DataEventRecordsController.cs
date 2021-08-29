@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DomainModel;
 using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AspNetCoreMultipleProject.Controllers
 {
