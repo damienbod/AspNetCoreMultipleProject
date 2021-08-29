@@ -13,6 +13,6 @@ namespace DomainModel
         Task<List<DataEventRecord>> GetDataEventRecords();
         Task<List<SourceInfo>> GetSourceInfos(bool withChildren);
         Task<bool> DataEventRecordExists(long id);
-        Task AddSourceInfo(SourceInfo sourceInfo);
+        Task<SourceInfo> AddSourceInfo(SourceInfo sourceInfo);
     }
 }

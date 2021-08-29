@@ -85,10 +85,11 @@ namespace DataAccessMySqlProvider
             return await filteredDataEventRecords.AnyAsync();
         }
 
-        public async Task AddSourceInfo(SourceInfo sourceInfo)
+        public async Task<SourceInfo> AddSourceInfo(SourceInfo sourceInfo)
         {
             _context.SourceInfos.Add(sourceInfo);
             await _context.SaveChangesAsync();
+            return sourceInfo;
         }
     }
 }

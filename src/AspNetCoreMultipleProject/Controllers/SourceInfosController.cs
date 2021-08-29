@@ -73,8 +73,17 @@ namespace AspNetCoreMultipleProject.Controllers
                 SourceInfoId = value.SourceInfoId
             };
 
-            await _dataAccessProvider.AddSourceInfo(sourceInfo);
-            return Created("/api/DataEventRecord", value);
+            var si = await _dataAccessProvider.AddSourceInfo(sourceInfo);
+
+            var result = new SourceInfoVm
+            {
+                Timestamp = si.Timestamp,
+                Description = si.Description,
+                Name = si.Name,
+                SourceInfoId = si.SourceInfoId
+            };
+
+            return Created("/api/SourceInfo", result);
         }
 
         //[HttpGet("all/{withChildren}")]
