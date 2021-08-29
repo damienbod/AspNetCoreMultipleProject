@@ -38,7 +38,7 @@ namespace AspNetCoreMultipleProject.Controllers
                     Name = der.SourceInfo.Name,
                     SourceInfoId = der.SourceInfo.SourceInfoId,
                     Timestamp = der.SourceInfo.Timestamp
-                }, 
+                },
             });
 
             return Ok(results);
@@ -97,7 +97,7 @@ namespace AspNetCoreMultipleProject.Controllers
                 SourceInfoId = value.SourceInfoId
             };
 
-            if(value.SourceInfo != null)
+            if (value.SourceInfo != null)
             {
                 dataEventRecord.SourceInfo = new SourceInfo
                 {
@@ -115,7 +115,7 @@ namespace AspNetCoreMultipleProject.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Put(long id, [FromBody]DataEventRecordVm value)
+        public async Task<IActionResult> Put(long id, [FromBody] DataEventRecordVm value)
         {
             if (id == 0)
             {
@@ -169,7 +169,7 @@ namespace AspNetCoreMultipleProject.Controllers
 
             await _dataAccessProvider.DeleteDataEventRecord(id);
 
-            return Ok();  
+            return Ok();
         }
     }
 }

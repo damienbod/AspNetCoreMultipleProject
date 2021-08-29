@@ -21,7 +21,7 @@ namespace DataAccessSqliteProvider
         }
 
         public async Task AddDataEventRecord(DataEventRecord dataEventRecord)
-        {           
+        {
             if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
             {
                 _context.SourceInfos.Add(dataEventRecord.SourceInfo);

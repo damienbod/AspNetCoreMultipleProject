@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace DataAccessMySqlProvider
-{ 
+{
     // >dotnet ef migration add testMigration
     public class DomainModelMySqlContext : DbContext
     {
-        public DomainModelMySqlContext(DbContextOptions<DomainModelMySqlContext> options) :base(options)
+        public DomainModelMySqlContext(DbContextOptions<DomainModelMySqlContext> options) : base(options)
         { }
-        
+
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
@@ -35,7 +35,7 @@ namespace DataAccessMySqlProvider
             updateUpdatedProperty<SourceInfo>();
             updateUpdatedProperty<DataEventRecord>();
 
-            
+
             return base.SaveChanges();
         }
 
