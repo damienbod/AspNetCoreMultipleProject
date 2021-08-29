@@ -2,22 +2,21 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DomainModel.Model;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessSqliteProvider
 {
     // >dotnet ef migration add testMigration
     public class DomainModelSqliteContext : DbContext
     {
-        public DomainModelSqliteContext(DbContextOptions<DomainModelSqliteContext> options) :base(options)
+        public DomainModelSqliteContext(DbContextOptions<DomainModelSqliteContext> options) : base(options)
         { }
-        
+
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
-        { 
+        {
             builder.Entity<DataEventRecord>().HasKey(m => m.DataEventRecordId);
             builder.Entity<SourceInfo>().HasKey(m => m.SourceInfoId);
 
@@ -25,7 +24,7 @@ namespace DataAccessSqliteProvider
             builder.Entity<DataEventRecord>().Property<DateTime>("UpdatedTimestamp");
             builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
-            base.OnModelCreating(builder); 
+            base.OnModelCreating(builder);
         }
 
         public override int SaveChanges()

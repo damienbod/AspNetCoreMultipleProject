@@ -21,7 +21,7 @@ namespace DataAccessMsSqlServerProvider
 
         }
 
-        public async Task AddDataEventRecord(DataEventRecord dataEventRecord)
+        public async Task<DataEventRecord> AddDataEventRecord(DataEventRecord dataEventRecord)
         {
             if (dataEventRecord.SourceInfo != null && dataEventRecord.SourceInfoId == 0)
             {
@@ -31,14 +31,13 @@ namespace DataAccessMsSqlServerProvider
             }
             else
             {
-                var sourceInfo = _context.SourceInfos.Find(dataEventRecord.SourceInfo.SourceInfoId);
-                sourceInfo.Description = dataEventRecord.Description;
-                sourceInfo.Name = dataEventRecord.Name;
+                var sourceInfo = _context.SourceInfos.Find(dataEventRecord.SourceInfoId);
                 dataEventRecord.SourceInfo = sourceInfo;
             }
 
             _context.DataEventRecords.Add(dataEventRecord);
             await _context.SaveChangesAsync();
+            return dataEventRecord;
         }
 
         public async Task UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord)
@@ -56,13 +55,18 @@ namespace DataAccessMsSqlServerProvider
 
         public async Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId)
         {
-            return await _context.DataEventRecords.FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
+            return await _context.DataEventRecords
+                .Include(s => s.SourceInfo)
+                .FirstAsync(t => t.DataEventRecordId == dataEventRecordId);
         }
 
         public async Task<List<DataEventRecord>> GetDataEventRecords()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return await _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToListAsync();
+            return await _context.DataEventRecords
+                .Include(s => s.SourceInfo)
+                .OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp"))
+                .ToListAsync();
         }
 
         public async Task<List<SourceInfo>> GetSourceInfos(bool withChildren)
@@ -82,6 +86,21 @@ namespace DataAccessMsSqlServerProvider
                 .Where(item => item.DataEventRecordId == id);
 
             return await filteredDataEventRecords.AnyAsync();
+        }
+
+        public async Task<SourceInfo> AddSourceInfo(SourceInfo sourceInfo)
+        {
+            _context.SourceInfos.Add(sourceInfo);
+            await _context.SaveChangesAsync();
+            return sourceInfo;
+        }
+
+        public async Task<bool> SourceInfoExists(long id)
+        {
+            var filteredSourceInfoRecords = _context.SourceInfos
+                .Where(item => item.SourceInfoId == id);
+
+            return await filteredSourceInfoRecords.AnyAsync();
         }
     }
 }

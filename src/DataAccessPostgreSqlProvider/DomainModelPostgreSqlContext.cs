@@ -8,10 +8,10 @@ namespace DataAccessPostgreSqlProvider
     // >dotnet ef migration add testMigration in AspNet5MultipleProject
     public class DomainModelPostgreSqlContext : DbContext
     {
-        public DomainModelPostgreSqlContext(DbContextOptions<DomainModelPostgreSqlContext> options) :base(options)
+        public DomainModelPostgreSqlContext(DbContextOptions<DomainModelPostgreSqlContext> options) : base(options)
         {
         }
-        
+
         public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
         public DbSet<SourceInfo> SourceInfos { get; set; }
