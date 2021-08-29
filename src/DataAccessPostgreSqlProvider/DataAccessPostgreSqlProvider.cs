@@ -86,5 +86,11 @@ namespace DataAccessPostgreSqlProvider
 
             return await filteredDataEventRecords.AnyAsync();
         }
+
+        public async Task AddSourceInfo(SourceInfo sourceInfo)
+        {
+            _context.SourceInfos.Add(sourceInfo);
+            await _context.SaveChangesAsync();
+        }
     }
 }

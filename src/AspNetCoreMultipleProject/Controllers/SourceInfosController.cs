@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DomainModel;
+using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMultipleProject.Controllers
@@ -56,25 +57,25 @@ namespace AspNetCoreMultipleProject.Controllers
             return Ok(result);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] SourceInfoVm value)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] SourceInfoVm value)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-        //    var sourceInfo = new SourceInfo
-        //    {
-        //        Timestamp = value.Timestamp,
-        //        Description = value.Description,
-        //        Name = value.Name,
-        //        SourceInfoId = value.SourceInfoId
-        //    };
+            var sourceInfo = new SourceInfo
+            {
+                Timestamp = value.Timestamp,
+                Description = value.Description,
+                Name = value.Name,
+                SourceInfoId = value.SourceInfoId
+            };
 
-        //    await _dataAccessProvider.AddSourceInfo(sourceInfo);
-        //    return Created("/api/DataEventRecord", value);
-        //}
+            await _dataAccessProvider.AddSourceInfo(sourceInfo);
+            return Created("/api/DataEventRecord", value);
+        }
 
         //[HttpGet("all/{withChildren}")]
         //[ProducesResponseType(typeof(IEnumerable<SourceInfoVm>), (int)HttpStatusCode.OK)]
