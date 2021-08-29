@@ -76,7 +76,7 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]DataEventRecord value)
+        public async Task<IActionResult> Post([FromBody] DataEventRecordVm value)
         {
             if (!ModelState.IsValid)
             {
@@ -88,14 +88,34 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            await _dataAccessProvider.AddDataEventRecord(value);
+            var dataEventRecord = new DataEventRecord
+            {
+                Timestamp = value.Timestamp,
+                Description = value.Description,
+                Name = value.Name,
+                DataEventRecordId = value.DataEventRecordId,
+                SourceInfoId = value.SourceInfoId
+            };
+
+            if(value.SourceInfo != null)
+            {
+                dataEventRecord.SourceInfo = new SourceInfo
+                {
+                    Description = value.SourceInfo.Description,
+                    Name = value.SourceInfo.Name,
+                    SourceInfoId = value.SourceInfo.SourceInfoId,
+                    Timestamp = value.SourceInfo.Timestamp
+                };
+            }
+
+            await _dataAccessProvider.AddDataEventRecord(dataEventRecord);
             return Created("/api/DataEventRecord", value);
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Put(long id, [FromBody]DataEventRecord value)
+        public async Task<IActionResult> Put(long id, [FromBody]DataEventRecordVm value)
         {
             if (id == 0)
             {
@@ -107,7 +127,27 @@ namespace AspNetCoreMultipleProject.Controllers
                 return NotFound($"DataEventRecord with Id {id} does not exist");
             }
 
-            await _dataAccessProvider.UpdateDataEventRecord(id, value);
+            var dataEventRecord = new DataEventRecord
+            {
+                Timestamp = value.Timestamp,
+                Description = value.Description,
+                Name = value.Name,
+                DataEventRecordId = value.DataEventRecordId,
+                SourceInfoId = value.SourceInfoId
+            };
+
+            if (value.SourceInfo != null)
+            {
+                dataEventRecord.SourceInfo = new SourceInfo
+                {
+                    Description = value.SourceInfo.Description,
+                    Name = value.SourceInfo.Name,
+                    SourceInfoId = value.SourceInfo.SourceInfoId,
+                    Timestamp = value.SourceInfo.Timestamp
+                };
+            }
+
+            await _dataAccessProvider.UpdateDataEventRecord(id, dataEventRecord);
             return NoContent();
         }
 
@@ -129,8 +169,7 @@ namespace AspNetCoreMultipleProject.Controllers
 
             await _dataAccessProvider.DeleteDataEventRecord(id);
 
-            return Ok();
-            
+            return Ok();  
         }
     }
 }
