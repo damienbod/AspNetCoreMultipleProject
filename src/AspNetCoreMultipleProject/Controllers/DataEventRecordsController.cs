@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DomainModel;
@@ -19,18 +20,28 @@ namespace AspNetCoreMultipleProject.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<DataEventRecord>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<DataEventRecordVm>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _dataAccessProvider.GetDataEventRecords());
-        }
+            var data = await _dataAccessProvider.GetDataEventRecords();
 
-        [HttpGet]
-        [Route("SourceInfos")]
-        [ProducesResponseType(typeof(IEnumerable<SourceInfo>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetSourceInfos(bool withChildren)
-        {
-            return Ok(await _dataAccessProvider.GetSourceInfos(withChildren));
+            var results = data.Select(der => new DataEventRecordVm
+            {
+                Timestamp = der.Timestamp,
+                Description = der.Description,
+                Name = der.Name,
+                SourceInfoId = der.SourceInfoId,
+                DataEventRecordId = der.DataEventRecordId,
+                SourceInfo = new SourceInfoVm
+                {
+                    Description = der.SourceInfo.Description,
+                    Name = der.SourceInfo.Name,
+                    SourceInfoId = der.SourceInfo.SourceInfoId,
+                    Timestamp = der.SourceInfo.Timestamp
+                }, 
+            });
+
+            return Ok(results);
         }
 
         [HttpGet("{id}")]

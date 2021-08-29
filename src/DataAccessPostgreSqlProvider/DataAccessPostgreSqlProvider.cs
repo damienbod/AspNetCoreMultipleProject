@@ -60,7 +60,10 @@ namespace DataAccessPostgreSqlProvider
         public async Task<List<DataEventRecord>> GetDataEventRecords()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return await _context.DataEventRecords.OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp")).ToListAsync();
+            return await _context.DataEventRecords
+                .Include(s => s.SourceInfo)
+                .OrderByDescending(dataEventRecord => EF.Property<DateTime>(dataEventRecord, "UpdatedTimestamp"))
+                .ToListAsync();
         }
 
         public async Task<List<SourceInfo>> GetSourceInfos(bool withChildren)
