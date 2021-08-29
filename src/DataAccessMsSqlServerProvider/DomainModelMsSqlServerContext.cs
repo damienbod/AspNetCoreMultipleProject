@@ -2,7 +2,6 @@
 using System.Linq;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessMsSqlServerProvider
 {

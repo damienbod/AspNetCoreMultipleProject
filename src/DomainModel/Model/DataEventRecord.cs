@@ -1,11 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.Model
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class DataEventRecord
     {
         [Key]
