@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using DomainModel;
-using DomainModel.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMultipleProject.Controllers
@@ -11,36 +8,18 @@ namespace AspNetCoreMultipleProject.Controllers
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller
     {
-        private readonly IDataAccessProvider _dataAccessProvider;
+        private readonly BusinessProvider _businessProvider;
 
-        public DataEventRecordsController(IDataAccessProvider dataAccessProvider)
+        public DataEventRecordsController(BusinessProvider businessProvider)
         {
-            _dataAccessProvider = dataAccessProvider;
+            _businessProvider = businessProvider;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<DataEventRecordVm>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get()
         {
-            var data = await _dataAccessProvider.GetDataEventRecords();
-
-            var results = data.Select(der => new DataEventRecordVm
-            {
-                Timestamp = der.Timestamp,
-                Description = der.Description,
-                Name = der.Name,
-                SourceInfoId = der.SourceInfoId,
-                DataEventRecordId = der.DataEventRecordId,
-                SourceInfo = new SourceInfoVm
-                {
-                    Description = der.SourceInfo.Description,
-                    Name = der.SourceInfo.Name,
-                    SourceInfoId = der.SourceInfo.SourceInfoId,
-                    Timestamp = der.SourceInfo.Timestamp
-                },
-            });
-
-            return Ok(results);
+            return Ok(await _businessProvider.GetDataEventRecords());
         }
 
         [HttpGet("{id}")]
@@ -48,30 +27,12 @@ namespace AspNetCoreMultipleProject.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get(long id)
         {
-            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            if (!await _businessProvider.ExistsDataEventRecord(id))
             {
                 return NotFound($"DataEventRecord with Id {id} does not exist");
             }
 
-            var der = await _dataAccessProvider.GetDataEventRecord(id);
-
-            var result = new DataEventRecordVm
-            {
-                Timestamp = der.Timestamp,
-                Description = der.Description,
-                Name = der.Name,
-                SourceInfoId = der.SourceInfoId,
-                DataEventRecordId = der.DataEventRecordId,
-                SourceInfo = new SourceInfoVm
-                {
-                    Description = der.SourceInfo.Description,
-                    Name = der.SourceInfo.Name,
-                    SourceInfoId = der.SourceInfo.SourceInfoId,
-                    Timestamp = der.SourceInfo.Timestamp
-                },
-            };
-
-            return Ok(result);
+            return Ok(await _businessProvider.GetDataEventRecordById(id));
         }
 
         [HttpPost]
@@ -87,43 +48,7 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            var dataEventRecord = new DataEventRecord
-            {
-                Timestamp = value.Timestamp,
-                Description = value.Description,
-                Name = value.Name,
-                DataEventRecordId = value.DataEventRecordId,
-                SourceInfoId = value.SourceInfoId
-            };
-
-            if (value.SourceInfo != null)
-            {
-                dataEventRecord.SourceInfo = new SourceInfo
-                {
-                    Description = value.SourceInfo.Description,
-                    Name = value.SourceInfo.Name,
-                    SourceInfoId = value.SourceInfo.SourceInfoId,
-                    Timestamp = value.SourceInfo.Timestamp
-                };
-            }
-
-            var der = await _dataAccessProvider.AddDataEventRecord(dataEventRecord);
-
-            var result = new DataEventRecordVm
-            {
-                Timestamp = der.Timestamp,
-                Description = der.Description,
-                Name = der.Name,
-                SourceInfoId = der.SourceInfoId,
-                DataEventRecordId = der.DataEventRecordId,
-                SourceInfo = new SourceInfoVm
-                {
-                    Description = der.SourceInfo.Description,
-                    Name = der.SourceInfo.Name,
-                    SourceInfoId = der.SourceInfo.SourceInfoId,
-                    Timestamp = der.SourceInfo.Timestamp
-                },
-            };
+            var result = await _businessProvider.CreateDataEventRecord(value);
 
             return Created("/api/DataEventRecord", result);
         }
@@ -138,32 +63,12 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            if (!await _businessProvider.ExistsDataEventRecord(id))
             {
                 return NotFound($"DataEventRecord with Id {id} does not exist");
             }
 
-            var dataEventRecord = new DataEventRecord
-            {
-                Timestamp = value.Timestamp,
-                Description = value.Description,
-                Name = value.Name,
-                DataEventRecordId = value.DataEventRecordId,
-                SourceInfoId = value.SourceInfoId
-            };
-
-            if (value.SourceInfo != null)
-            {
-                dataEventRecord.SourceInfo = new SourceInfo
-                {
-                    Description = value.SourceInfo.Description,
-                    Name = value.SourceInfo.Name,
-                    SourceInfoId = value.SourceInfo.SourceInfoId,
-                    Timestamp = value.SourceInfo.Timestamp
-                };
-            }
-
-            await _dataAccessProvider.UpdateDataEventRecord(id, dataEventRecord);
+            await _businessProvider.UpdateDataEventRecord(id, value);
             return NoContent();
         }
 
@@ -178,12 +83,12 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
-            if (!await _dataAccessProvider.DataEventRecordExists(id))
+            if (!await _businessProvider.ExistsDataEventRecord(id))
             {
                 return NotFound($"DataEventRecord with Id {id} does not exist");
             }
 
-            await _dataAccessProvider.DeleteDataEventRecord(id);
+            await _businessProvider.DeleteDataEventRecord(id);
 
             return Ok();
         }

@@ -72,6 +72,8 @@ namespace AspNetCoreMultipleProject
 
             //services.AddScoped<IDataAccessProvider, DataAccessMySqlProvider.DataAccessMySqlProvider>();
 
+            services.AddScoped<BusinessProvider>();
+
             services.AddControllers()
               .AddNewtonsoftJson(options =>
               {
