@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9" PrivateAssets="All" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9" PrivateAssets="All" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
   </ItemGroup>
 
 </Project>
