@@ -73,10 +73,13 @@ namespace DataAccessSqliteProvider
             {
                 return await _context.SourceInfos
                     .Include(s => s.DataEventRecords)
-                    .OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToListAsync();
+                    .OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp"))
+                    .ToListAsync();
             }
 
-            return await _context.SourceInfos.OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp")).ToListAsync();
+            return await _context.SourceInfos
+                .OrderByDescending(srcInfo => EF.Property<DateTime>(srcInfo, "UpdatedTimestamp"))
+                .ToListAsync();
         }
 
         public async Task<bool> DataEventRecordExists(long id)
