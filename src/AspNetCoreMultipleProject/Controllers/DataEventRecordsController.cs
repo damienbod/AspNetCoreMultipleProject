@@ -108,8 +108,25 @@ namespace AspNetCoreMultipleProject.Controllers
                 };
             }
 
-            await _dataAccessProvider.AddDataEventRecord(dataEventRecord);
-            return Created("/api/DataEventRecord", value);
+            var der = await _dataAccessProvider.AddDataEventRecord(dataEventRecord);
+
+            var result = new DataEventRecordVm
+            {
+                Timestamp = der.Timestamp,
+                Description = der.Description,
+                Name = der.Name,
+                SourceInfoId = der.SourceInfoId,
+                DataEventRecordId = der.DataEventRecordId,
+                SourceInfo = new SourceInfoVm
+                {
+                    Description = der.SourceInfo.Description,
+                    Name = der.SourceInfo.Name,
+                    SourceInfoId = der.SourceInfo.SourceInfoId,
+                    Timestamp = der.SourceInfo.Timestamp
+                },
+            };
+
+            return Created("/api/DataEventRecord", result);
         }
 
         [HttpPut("{id}")]

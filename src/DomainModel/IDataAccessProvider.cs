@@ -6,7 +6,7 @@ namespace DomainModel
 {
     public interface IDataAccessProvider
     {
-        Task AddDataEventRecord(DataEventRecord dataEventRecord);
+        Task<DataEventRecord> AddDataEventRecord(DataEventRecord dataEventRecord);
         Task UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord);
         Task DeleteDataEventRecord(long dataEventRecordId);
         Task<DataEventRecord> GetDataEventRecord(long dataEventRecordId);
