@@ -28,7 +28,7 @@ namespace DataAccessSqliteProvider
             }
             else
             {
-                var sourceInfo = _context.SourceInfos.Find(dataEventRecord.SourceInfo.SourceInfoId);
+                var sourceInfo = _context.SourceInfos.Find(dataEventRecord.SourceInfoId);
                 sourceInfo.Description = dataEventRecord.Description;
                 sourceInfo.Name = dataEventRecord.Name;
                 dataEventRecord.SourceInfo = sourceInfo;

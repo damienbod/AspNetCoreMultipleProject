@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DomainModel.Model;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessSqliteProvider
 {
