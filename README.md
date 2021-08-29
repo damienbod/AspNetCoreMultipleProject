@@ -1,8 +1,5 @@
 # ASP.NET Core API with Entity Framework Core and Swagger
 
-
-https://github.com/damienbod/AspNetCoreMultipleProject
-
 [![.NET](https://github.com/damienbod/AspNetCoreMultipleProject/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreMultipleProject/actions/workflows/dotnet.yml)
 
 <strong>Posts in this series:</strong>
