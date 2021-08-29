@@ -93,5 +93,13 @@ namespace DataAccessPostgreSqlProvider
             await _context.SaveChangesAsync();
             return sourceInfo;
         }
+
+        public async Task<bool> SourceInfoExists(long id)
+        {
+            var filteredSourceInfoRecords = _context.SourceInfos
+                .Where(item => item.SourceInfoId == id);
+
+            return await filteredSourceInfoRecords.AnyAsync();
+        }
     }
 }

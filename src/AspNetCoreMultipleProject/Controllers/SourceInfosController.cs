@@ -65,6 +65,11 @@ namespace AspNetCoreMultipleProject.Controllers
                 return BadRequest();
             }
 
+            if (value.SourceInfoId > 0 && await _dataAccessProvider.SourceInfoExists(value.SourceInfoId))
+            {
+                return BadRequest($"SourceInfo with Id {value.SourceInfoId} exists");
+            }
+
             var sourceInfo = new SourceInfo
             {
                 Timestamp = value.Timestamp,
