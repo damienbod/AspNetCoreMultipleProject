@@ -125,4 +125,6 @@ or if a SourceInfo exists
 
 ### GET
 
-http://localhost:44388/api/dataeventrecords/SourceInfos?withChildren=true
+http://localhost:44388/api/dataeventrecords
+
+http://localhost:44388/api/SourceInfos
