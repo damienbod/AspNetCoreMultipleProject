@@ -96,6 +96,7 @@ Update-Database -c DomainModelMySqlContext
 https://localhost:44388/api/dataeventrecords
 Context-Type: application/json
 
+```csharp
 {
   "DataEventRecordId":0,
   "Name":"Funny data more",
@@ -107,10 +108,23 @@ Context-Type: application/json
     "Name":"Beauty",
     "Description":"first Source",
     "Timestamp":"2015-12-23T08:31:35+01:00",
-    "DataEventRecords":[]
   }, 
   "SourceInfoId": 0
 }
+```
+
+or if a SourceInfo exists
+
+```csharp
+{
+  "DataEventRecordId":0,
+  "Name":"Funny data more",
+  "Description":"no",
+  "Timestamp":"2015-12-27T08:31:35Z",
+  "SourceInfoId": 1
+}
+```
+
 
 ### GET
 
